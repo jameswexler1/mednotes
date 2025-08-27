@@ -5,6 +5,7 @@ draft: false
 description: "Complete explanation of the pathophysiology of S. aureus"
 subjects: ["Microbiology"]
 systems: ["Pathology", "Microbiology"]
+tags: ["Microbiology"]
 ---
 
 # There are two main ways it can cause damage:
