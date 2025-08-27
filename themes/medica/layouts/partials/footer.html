@@ -1,0 +1,25 @@
+<div class="footer">
+  <div class="grid">
+    <div>
+      <h4>{{ site.Title }}</h4>
+      <p>{{ site.Params.tagline }}</p>
+    </div>
+    <div>
+      <h5>Links</h5>
+      <ul>
+        <li><a href="/notes/">Notes</a></li>
+        <li><a href="/explainers/">Explainers</a></li>
+        <li><a href="/search/">Search</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul>
+        {{ with site.Params.email }}<li>Email: {{ . }}</li>{{ end }}
+        {{ with site.Params.github }}<li><a href="{{ . }}">GitHub</a></li>{{ end }}
+        {{ with site.Params.twitter }}<li><a href="{{ . }}">Twitter/X</a></li>{{ end }}
+      </ul>
+    </div>
+  </div>
+  <p class="tiny">© {{ now.Year }} {{ site.Title }} — Educational only, not medical advice.</p>
+</div>

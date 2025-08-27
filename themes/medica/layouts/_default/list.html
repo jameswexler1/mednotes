@@ -1,0 +1,35 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+<div class="filters">
+  <div>Filter by subject:</div>
+  <ul class="chips">
+    {{ range $name, $taxonomy := site.Taxonomies.subjects }}
+      <li><a class="chip" href="{{ (printf "/subjects/%s/" (urlize $name)) }}">{{ $name }} ({{ len $taxonomy.Pages }})</a></li>
+    {{ end }}
+  </ul>
+  <div>Filter by system:</div>
+  <ul class="chips">
+    {{ range $name, $taxonomy := site.Taxonomies.systems }}
+      <li><a class="chip" href="{{ (printf "/systems/%s/" (urlize $name)) }}">{{ $name }} ({{ len $taxonomy.Pages }})</a></li>
+    {{ end }}
+  </ul>
+</div>
+<ul class="cards">
+  {{ range .Pages.ByDate.Reverse }}
+    <li class="card">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p class="muted">{{ .Params.description }}</p>
+<p class="tiny">
+  {{ if .Params.subjects }}
+    Subjects: {{ delimit .Params.subjects ", " }}
+  {{ end }}
+  {{ if and .Params.subjects .Params.systems }} · {{ end }}
+  {{ if .Params.systems }}
+    Systems: {{ delimit .Params.systems ", " }}
+  {{ end }}
+</p>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

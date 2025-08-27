@@ -1,0 +1,5 @@
+{{- $type := .Get "type" | default "note" -}}
+<div class="callout callout-{{ $type }}">
+  <strong>{{- if eq $type "pearl" -}}Pearl{{- else if eq $type "warn" -}}Warning{{- else -}}Note{{- end -}}:</strong>
+  <div class="callout-body">{{ .Inner | markdownify }}</div>
+</div>

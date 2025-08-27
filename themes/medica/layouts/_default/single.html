@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="content">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="muted">{{ . }}</p>{{ end }}
+  <p class="tiny">Subjects: {{ delimit .Params.subjects ", " }} · Systems: {{ delimit .Params.systems ", " }} · Tags: {{ delimit .Params.tags ", " }}</p>
+  {{ .Content }}
+  <hr>
+  <p class="tiny muted">Disclaimer: For education only. Not medical advice; always follow your institution's guidance.</p>
+</article>
+{{ end }}

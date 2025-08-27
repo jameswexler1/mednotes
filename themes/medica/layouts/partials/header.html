@@ -1,0 +1,13 @@
+<nav class="nav">
+  <a class="brand" href="/">
+    <img src="{{ site.Params.logo }}" alt="logo" height="36">
+    <span>{{ site.Title }}</span>
+  </a>
+  <input id="nav-toggle" type="checkbox">
+  <label for="nav-toggle" class="hamburger">☰</label>
+  <ul class="menu">
+    {{ range site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+    {{ end }}
+  </ul>
+</nav>

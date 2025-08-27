@@ -1,0 +1,7 @@
+{{- $pages := where site.RegularPages "Section" "in" (slice "notes" "explainers") -}}
+[
+{{- range $i, $p := $pages -}}
+  {{- if gt $i 0 }},{{ end -}}
+  {"title": {{ $p.Title | jsonify }}, "description": {{ $p.Params.description | default "" | jsonify }}, "url": {{ $p.RelPermalink | jsonify }}}
+{{- end -}}
+]

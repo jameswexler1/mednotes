@@ -1,0 +1,53 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "MedNotes"
+theme = "medica"
+enableRobotsTXT = true
+[pagination]
+  pagerSize = 10
+
+[params]
+  logo = "/images/logo.svg"
+  tagline = "Free med school notes and explainers."
+  author = "Your Name"
+  email = "you@example.com"
+  github = "https://github.com/yourname"
+  twitter = "https://twitter.com/yourname"
+  accent = "#2fb7a1"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS", "JSON"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[taxonomies]
+  subject = "subjects"
+  system = "systems"
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Notes"
+    url = "/notes/"
+    weight = 2
+  [[menu.main]]
+    name = "Explainers"
+    url = "/explainers/"
+    weight = 3
+  [[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 4
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 5
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 6
