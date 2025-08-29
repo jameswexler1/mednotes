@@ -57,3 +57,5 @@ Enterotoxin targets the enterocytes in the lining of the gastrointestinal (GI) t
 
 - **Diarrhea**: Due to impaired absorption and electrolyte shifts.
 - **Gastroenteritis**: Symptoms can occur within **6 hours** of ingesting contaminated food, typically foods like mayonnaise.
+
+Testing
