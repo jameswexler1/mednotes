@@ -56,7 +56,7 @@ Catheters are one way bacteria can enter the urinary tract, but they are not the
 *S. aureus* can also enter the bloodstream, causing **bacteremia**. Bacteremia may be asymptomatic but can progress to **septicemia**, with systemic signs of infection. Hematogenous spread allows the bacteria to reach distant organs, including the meninges, leading to **meningitis**, or the brain, causing **brain abscesses**. Spread to the lungs can result in **pneumonia**, especially in elderly patients or following influenza. The heart valves are also susceptible, and bacterial colonization can lead to **infective endocarditis**.
 
 
-{{< callout type="pearl" >}} In elderly patients, pneumonia caused by S. aureus is commonly found after an infection from a flu {{< /callout >}}
+{{< callout type="pearl" >}} In elderly patients, pneumonia caused by S. aureus is commonly found after an infection by a flu. {{< /callout >}}
 
 Exotoxins contribute further to clinical disease. TSST-1 can cause **toxic shock syndrome**, while exfoliative toxins destroy desmoglein-1, leading to keratinocyte separation, inflammation, blistering, and a positive **Nikolsky sign**, characteristic of **staphylococcal scalded skin syndrome (SSSS)**. Enterotoxins can damage the gastrointestinal lining, impairing absorption and causing electrolyte imbalances, which manifests as diarrhea, commonly seen in **foodborne gastroenteritis**.
 
