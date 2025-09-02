@@ -61,3 +61,81 @@ Catheters are one way bacteria can enter the urinary tract, but they are not the
 Exotoxins contribute further to clinical disease. TSST-1 can cause **toxic shock syndrome**, while exfoliative toxins destroy desmoglein-1, leading to keratinocyte separation, inflammation, blistering, and a positive **Nikolsky sign**, characteristic of **staphylococcal scalded skin syndrome (SSSS)**. Enterotoxins can damage the gastrointestinal lining, impairing absorption and causing electrolyte imbalances, which manifests as diarrhea, commonly seen in **foodborne gastroenteritis**.
 
 Risk factors for invasive *S. aureus* infection include intravenous drug use, surgical procedures, and the presence of foreign bodies such as catheters or prosthetic devices. Understanding these mechanisms is critical for anticipating clinical presentations and guiding treatment strategies.
+
+
+# Clinical Features of Staphylococcus Epidermidis
+
+_S. epidermidis_ has the ability to travel into the bladder from the perineum, and cause infections of the bladder, and potentially, spread into the urethers, into the kidneys, leading to urinary tract infections (U.T.I's).
+
+# Treatment
+
+## S. aureus
+
+### Beta-lactam resistant S. aureus
+
+There are species of _S. aureus_ that are able to produce the enzyme Beta-lactamase. This enzyme is able to inhibit the action of beta-lactam antibiotics.
+However, these species are also usually sensitive to metacyllin. Therefore, we call these species Metasyllin sensitive S aureus, known as MSSA. These specieas are very sensitive to oxacillin and naflacillin.
+
+So, in short, for treating M.S.S.A, the following are recommended:
+
+- Oxacillin
+- Nafcillin
+
+### MecA gene
+
+There are also strands that are resistant to both of those options, and these usually have a gene called MecA gene. This gene leads to the production of a protein called Penicillin binding protein type 2A. The change in this protein turns certain kinds of antibiotics ineffective, such as methacillin and similar antibiotics. This happens because the change in this peptidase enzyme inhibits their binding to it, rendering these antibiotics less effective against the bacteria.
+
+These bacteria are called methicillin resistant S. aureus, or M.R.S.A.
+There are two main types of MRSA: The community one, and the hospitalar one.
+We use different antibiotics for these.
+
+For the hospitalar version, we use mainly *Vancomycin*.
+For the community version, we use doxycyclin, clindomycin and TMP-SMX.
+
+So, for short, the antibiotics used for MRSA are:
+
+- Vancomycin (for the hospitalar version)
+- Doxycyclin
+- Clindomycin
+- TMP-SMX
+
+### Van-A gene
+
+Bacteria that possess this gene have an alteration in the peptidoglycan cell wall in such a way that vancomycin efficacy drops significantly, as the antibiotic is not able to properly inhibit the cell wall growth. These bacteria are called vancomycin resistant S aureus, or VRSA.
+For these VRSA, we use the follwing antibiotic:
+
+- Linesolid
+
+This explains why certain types of antibiotics are better or worse for treating different species of _S. aureus_.
+
+## S. epidermidis
+
+The mechanisms of the differences in treatment of different species of _S. epidermidis_ are very similar to those of _S. aureus_. _S epidermidis_ can also produce beta-lactamase, inhibiting the action of beta lactam antibiotics, being resistant to them.
+But these are, however, sensitive to antibiotics such as methacillin. So it is in the class of methacillin sensitive S epidermidis, or MSSE.
+For treating these _S. epidermidis_, the following are used:
+
+- Oxacillin
+- Natcillin
+
+And just like with _S aureus_, there are also species that generate resistance to these, with the same MecA gene, which alters the structure of the penicillin binding protein, decreasing the efficacy of these antibiotics. In this case, we are dealing with methicillin resistant S epidermidis, or MRSE. For these, we use also
+- Vancomycin
+
+However, for catheter associated infections by _S epidermidis_, most of the time we can solve the infection by simply removing the medium in which the bacteria ispropagating, the catheter. Therefore, for a joint or a valve infection, it is a worthy case of treating with vancomycin, whereas with a catheter associated infection, the recommended approach is simply removing the catheter, which tends to solve the infection.
+
+## S. saprophyticus
+
+When _S. saprophyticus_ generates infections, it usually is related to the urinary tract. And there is a very specific subset of antibiotics we administer to patients with cystytis.
+
+First line antibiotics:
+
+- Nitrofurantoin
+- TMP-SMX
+- Fosfomycin
+
+If you can't give these for some reason like a counterindication, then there are other options such as:
+
+- Cephalexin
+- Augmentin
+- Ciprofloxin (really try to reserve this one, because there are a lot of adverse effects)
+
+These are potential alternatives for when the others can't be used for some reason.
