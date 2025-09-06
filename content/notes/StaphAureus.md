@@ -69,73 +69,69 @@ _S. epidermidis_ has the ability to travel into the bladder from the perineum, a
 
 # Treatment
 
-## S. aureus
+## Treatment of Staphylococcus aureus
 
-### Beta-lactam resistant S. aureus
+### Methicillin-Sensitive Staphylococcus aureus (MSSA)
 
-There are species of _S. aureus_ that are able to produce the enzyme Beta-lactamase. This enzyme is able to inhibit the action of beta-lactam antibiotics.
-However, these species are also usually sensitive to metacyllin. Therefore, we call these species Metasyllin sensitive S aureus, known as MSSA. These specieas are very sensitive to oxacillin and naflacillin.
+Some strains of *S. aureus* produce **β-lactamase**, an enzyme that inactivates penicillin. However, they remain sensitive to penicillinase-resistant β-lactams, particularly **oxacillin** and **nafcillin**. These are the drugs of choice for MSSA infections.
 
-So, in short, for treating M.S.S.A, the following are recommended:
-
+**Recommended therapy for MSSA:**
 - Oxacillin
 - Nafcillin
 
-### MecA gene
+---
 
-There are also strands that are resistant to both of those options, and these usually have a gene called MecA gene. This gene leads to the production of a protein called Penicillin binding protein type 2A. The change in this protein turns certain kinds of antibiotics ineffective, such as methacillin and similar antibiotics. This happens because the change in this peptidase enzyme inhibits their binding to it, rendering these antibiotics less effective against the bacteria.
+### Methicillin-Resistant Staphylococcus aureus (MRSA)
 
-These bacteria are called methicillin resistant S. aureus, or M.R.S.A.
-There are two main types of MRSA: The community one, and the hospitalar one.
-We use different antibiotics for these.
+Resistance arises from the **mecA gene**, which encodes an altered **penicillin-binding protein (PBP2a)**. This protein has low affinity for β-lactam antibiotics, including methicillin and its derivatives, rendering them ineffective.
 
-For the hospitalar version, we use mainly *Vancomycin*.
-For the community version, we use doxycyclin, clindomycin and TMP-SMX.
+Two clinically relevant forms exist:
+- **Hospital-acquired MRSA (HA-MRSA):** Typically resistant to multiple drug classes, treated primarily with **vancomycin**.
+- **Community-acquired MRSA (CA-MRSA):** Often less resistant, may be treated with oral agents such as **doxycycline, clindamycin, or trimethoprim-sulfamethoxazole (TMP-SMX)**.
 
-So, for short, the antibiotics used for MRSA are:
+**Recommended therapy for MRSA:**
+- Vancomycin (HA-MRSA)
+- Doxycycline (CA-MRSA)
+- Clindamycin (CA-MRSA)
+- TMP-SMX (CA-MRSA)
 
-- Vancomycin (for the hospitalar version)
-- Doxycyclin
-- Clindomycin
-- TMP-SMX
+---
 
-### Van-A gene
+### Vancomycin-Resistant Staphylococcus aureus (VRSA)
 
-Bacteria that possess this gene have an alteration in the peptidoglycan cell wall in such a way that vancomycin efficacy drops significantly, as the antibiotic is not able to properly inhibit the cell wall growth. These bacteria are called vancomycin resistant S aureus, or VRSA.
-For these VRSA, we use the follwing antibiotic:
+Rare strains acquire the **vanA gene** (often from *Enterococcus*), which alters the peptidoglycan structure and prevents vancomycin binding. These strains are highly resistant and require alternative agents.
 
-- Linesolid
+**Recommended therapy for VRSA:**
+- Linezolid
 
-This explains why certain types of antibiotics are better or worse for treating different species of _S. aureus_.
+---
 
-## S. epidermidis
+## Treatment of Staphylococcus epidermidis
 
-The mechanisms of the differences in treatment of different species of _S. epidermidis_ are very similar to those of _S. aureus_. _S epidermidis_ can also produce beta-lactamase, inhibiting the action of beta lactam antibiotics, being resistant to them.
-But these are, however, sensitive to antibiotics such as methacillin. So it is in the class of methacillin sensitive S epidermidis, or MSSE.
-For treating these _S. epidermidis_, the following are used:
+*S. epidermidis* shares resistance mechanisms with *S. aureus*.
 
-- Oxacillin
-- Natcillin
+- **Methicillin-Sensitive S. epidermidis (MSSE):** Treated with oxacillin or nafcillin.
+- **Methicillin-Resistant S. epidermidis (MRSE):** Possesses the **mecA gene**, requiring treatment with **vancomycin**.
 
-And just like with _S aureus_, there are also species that generate resistance to these, with the same MecA gene, which alters the structure of the penicillin binding protein, decreasing the efficacy of these antibiotics. In this case, we are dealing with methicillin resistant S epidermidis, or MRSE. For these, we use also
-- Vancomycin
+A key clinical distinction is that many *S. epidermidis* infections are associated with **foreign bodies** (e.g., catheters, prosthetic joints, prosthetic valves). In catheter-associated infections, **removing the device** is often sufficient and preferred over prolonged antibiotic therapy.
 
-However, for catheter associated infections by _S epidermidis_, most of the time we can solve the infection by simply removing the medium in which the bacteria ispropagating, the catheter. Therefore, for a joint or a valve infection, it is a worthy case of treating with vancomycin, whereas with a catheter associated infection, the recommended approach is simply removing the catheter, which tends to solve the infection.
+**Recommended therapy for S. epidermidis:**
+- Oxacillin / Nafcillin (MSSE)
+- Vancomycin (MRSE, or severe prosthetic infections)
+- Device removal (catheter-associated infections)
 
-## S. saprophyticus
+---
 
-When _S. saprophyticus_ generates infections, it usually is related to the urinary tract. And there is a very specific subset of antibiotics we administer to patients with cystytis.
+## Treatment of Staphylococcus saprophyticus
 
-First line antibiotics:
+*S. saprophyticus* primarily causes **urinary tract infections**, especially **cystitis in young women**. It remains sensitive to most urinary antibiotics, and treatment follows the same principles as uncomplicated cystitis caused by *E. coli*.
 
+**First-line therapy:**
 - Nitrofurantoin
 - TMP-SMX
 - Fosfomycin
 
-If you can't give these for some reason like a counterindication, then there are other options such as:
-
+**Alternative options (if contraindications to first-line agents):**
 - Cephalexin
-- Augmentin
-- Ciprofloxin (really try to reserve this one, because there are a lot of adverse effects)
-
-These are potential alternatives for when the others can't be used for some reason.
+- Amoxicillin-clavulanate (Augmentin)
+- Ciprofloxacin (*use sparingly due to significant adverse effects and risk of resistance*)
