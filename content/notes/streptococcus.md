@@ -1,4 +1,4 @@
-
+---
 title: "Streptococcus"
 date: 2025-09-10T20:55:03+02:00
 draft: true
@@ -6,6 +6,7 @@ description: ""
 subjects: [Microbiology]
 systems: [Microbiology]
 tags: [Microbiology]
+---
 
 
 # Streptococci — high-yield deep dive
