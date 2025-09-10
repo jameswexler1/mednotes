@@ -1,11 +1,11 @@
 ---
 title: "Streptococcus"
 date: 2025-09-10T20:55:03+02:00
-draft: true
-description: ""
-subjects: [Microbiology]
-systems: [Microbiology]
-tags: [Microbiology]
+draft: false
+description: "Complete explanation of the pathophysiology of S. aureus, epidermidis, and saprophyticus"
+subjects: ["Microbiology"]
+systems: ["Pathology", "Microbiology"]
+tags: ["Microbiology"]
 ---
 
 
