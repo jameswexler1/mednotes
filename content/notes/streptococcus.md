@@ -2,7 +2,7 @@
 title: "Streptococcus"
 date: 2025-09-10T20:55:03+02:00
 draft: false
-description: "Complete explanation of the pathophysiology of S. aureus, epidermidis, and saprophyticus"
+description: "Streptococcus"
 subjects: ["Microbiology"]
 systems: ["Pathology", "Microbiology"]
 tags: ["Microbiology"]
