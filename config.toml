@@ -9,10 +9,10 @@ enableRobotsTXT = true
 [params]
   logo = "/images/logo.svg"
   tagline = "Free med school notes and explainers."
-  author = "Your Name"
-  email = "you@example.com"
-  github = "https://github.com/yourname"
-  twitter = "https://twitter.com/yourname"
+  author = "Gustavo de Magalhaes"
+  email = "gustavo@demagalhaes.com"
+  github = "https://github.com/hohoho"
+  twitter = "https://twitter.com/alskjdal"
   accent = "#2fb7a1"
 
 [outputs]
