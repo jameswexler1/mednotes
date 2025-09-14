@@ -7,7 +7,7 @@ enableRobotsTXT = true
   pagerSize = 10
 
 [params]
-  logo = "/images/logo.svg"
+  logo = "/images/favicon.png"
   tagline = "Free med school notes and explainers."
   author = "Gustavo de Magalhaes"
   email = "gustavo@demagalhaes.com"
