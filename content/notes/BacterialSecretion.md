@@ -30,7 +30,7 @@ The clinical relevance of this is that T3SS is a big reason for invasive diarrhe
 ## Type IV Secretoin System (T4SS) - "Molecular syringe + DNA transporter"
 
 This secretion system can transfer proteins **and DNA**.
-[Legionella](Legionella.md) pneumophila uses a T4SS called Dot/Icm system to inject hundreds of effector proteins into host macrophages.
+[Legionella](legionella.md) pneumophila uses a T4SS called Dot/Icm system to inject hundreds of effector proteins into host macrophages.
 These effectors reroute vesicle trafficking and the phagosome fails to fuse with lysosomes. Instead, it gets
 "camouflaged" with ER-like membrane, creating the Legionella-containing vacuole (LCV) where the bacterium replicates.
 
