@@ -1,7 +1,7 @@
 ---
 title: "Influenza Virus"
 date: 2025-09-14T14:53:07+02:00
-draft: true
+draft: false
 description: ""
 subjects: ["virology", "microbiology"]
 systems: ["virology", "microbiology"]
