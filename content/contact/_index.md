@@ -2,6 +2,6 @@
 title: "Contact"
 ---
 
-- Email: you@example.com  
-- GitHub: https://github.com/yourname  
-- X/Twitter: https://twitter.com/yourname
+- Email: gustavo@demagalhaes.com
+- GitHub: https://github.com/hehehe
+- X/Twitter: https://twitter.com/asjdlakjs
