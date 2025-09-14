@@ -8,7 +8,6 @@ systems: ["Microbiology"]
 tags: ["Microbiology"]
 ---
 
-# Legionella — high-yield deep dive
 
 ### One-line summary
 
