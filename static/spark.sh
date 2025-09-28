@@ -24,7 +24,7 @@ https://github.com/LukeSmithxyz/voidrice/commits/master.atom \"~Spark dotfiles\"
 ### FUNCTIONS ###
 
 installpkg() {
-	pacman --noconfirm --needed -S "$1" >/dev/null 2>&1
+	pacman --noconfirm --needed -S "$1" || error "Failed to install $1"
 }
 
 error() {
@@ -102,6 +102,17 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 		pacman-key --populate archlinux >/dev/null 2>&1
 		;;
 	esac
+}
+
+enable_gremlins() {
+	whiptail --title "Enabling Testing Repos" --yesno "To install XLibre on Artix, we need to enable the testing repositories (gremlins). This may introduce instability as it pulls from testing branches. Continue?" 10 60 || error "User aborted XLibre installation."
+	whiptail --infobox "Enabling gremlins repositories..." 7 50
+	for repo in system-gremlins world-gremlins galaxy-gremlins; do
+		grep -q "^\[$repo\]" /etc/pacman.conf ||
+			echo "[$repo]
+Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+	done
+	pacman -Syy --noconfirm || error "Failed to sync repositories after enabling gremlins."
 }
 
 manualinstall() {
@@ -238,6 +249,7 @@ else
         progsfile="https://raw.githubusercontent.com/jameswexler1/Spark/master/static/xlibre/archprogs.csv"
     else
         progsfile="https://raw.githubusercontent.com/jameswexler1/Spark/master/static/xlibre/artixprogs.csv"
+        enable_gremlins
     fi
 fi
 
