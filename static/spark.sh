@@ -115,6 +115,10 @@ enable_gremlins() {
 		fi
 	done
 	pacman -Syy --noconfirm || error "Failed to sync repositories after enabling gremlins."
+	if pacman -Q xorg-server >/dev/null 2>&1; then
+		whiptail --infobox "Removing existing Xorg to resolve conflicts with XLibre..." 7 50
+		pacman -Rns --noconfirm xorg-server || error "Failed to remove xorg-server."
+	fi
 	pacman -Syu --noconfirm || error "Failed to upgrade system after enabling gremlins."
 }
 
