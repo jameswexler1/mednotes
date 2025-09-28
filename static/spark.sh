@@ -106,6 +106,7 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 
 enable_gremlins() {
 	whiptail --title "Enabling Testing Repos" --yesno "To install XLibre on Artix, we need to enable the testing repositories (gremlins). This may introduce instability as it pulls from testing branches. Continue?" 10 60 || error "User aborted XLibre installation."
+	whiptail --title "System Upgrade Warning" --yesno "Enabling gremlins requires a full system upgrade to align packages with testing versions. This will upgrade ALL installed packages to their gremlins equivalents where available and may cause temporary instability. Proceed?" 10 60 || error "User aborted system upgrade."
 	whiptail --infobox "Enabling gremlins repositories..." 7 50
 	for repo in system-gremlins world-gremlins galaxy-gremlins; do
 		grep -q "^\[$repo\]" /etc/pacman.conf ||
@@ -113,6 +114,7 @@ enable_gremlins() {
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 	done
 	pacman -Syy --noconfirm || error "Failed to sync repositories after enabling gremlins."
+	pacman -Syu --noconfirm || error "Failed to upgrade system after enabling gremlins."
 }
 
 manualinstall() {
