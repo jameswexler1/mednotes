@@ -129,7 +129,7 @@ disable_gremlins() {
 manualinstall() {
 	# Installs $1 manually. Used only for AUR helper here.
 	# Should be run after repodir is created and var is set.
-	pacman -Qq "$1" && return 0
+	pacman -Qq "$1" >/dev/null 2>&1 && return 0
 	whiptail --infobox "Installing \"$1\" manually." 7 50
 	sudo -u "$name" mkdir -p "$repodir/$1"
 	sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
@@ -233,9 +233,9 @@ makeuserjs(){
 }
 
 handle_xserver_conflicts() {
-	local conflicting_pkg new_pkg tag
+	local conflicting_pkgs new_pkg tag
 	if [ "$xchoice" = "Xlibre" ]; then
-		conflicting_pkg="xorg-server"
+		conflicting_pkgs="xorg-server glamor-egl nvidia-utils xf86-video-modesetting"
 		new_pkg="xlibre-xserver"
 		if [ "$(readlink -f /sbin/init)" = "/usr/lib/systemd/systemd" ]; then
 			tag="A"  # AUR on Arch
@@ -243,17 +243,19 @@ handle_xserver_conflicts() {
 			tag=""  # Repo on Artix
 		fi
 	else
-		conflicting_pkg="xlibre-xserver"
+		conflicting_pkgs=$(pacman -Qq | grep '^xlibre-' || true)
 		new_pkg="xorg-server"
 		tag=""  # Always main repo for Xorg
 	fi
 
-	if pacman -Qq "$conflicting_pkg" &>/dev/null; then
-		whiptail --infobox "Removing conflicting package $conflicting_pkg to allow $xchoice installation..." 7 50
-		pacman -Rddns --noconfirm "$conflicting_pkg" || error "Failed to remove $conflicting_pkg. Dependencies may be blocking; remove dependent packages manually or check for issues."
-	fi
+	for pkg in $conflicting_pkgs; do
+		if pacman -Qq "$pkg" >/dev/null 2>&1; then
+			whiptail --infobox "Removing conflicting package $pkg to allow $xchoice installation..." 7 50
+			pacman -Rddns --noconfirm "$pkg" >/dev/null 2>&1 || error "Failed to remove $pkg. Dependencies may be blocking; remove dependent packages manually or check for issues."
+		fi
+	done
 
-	if ! pacman -Qq "$new_pkg" &>/dev/null; then
+	if ! pacman -Qq "$new_pkg" >/dev/null 2>&1; then
 		whiptail --infobox "Pre-installing $new_pkg to resolve dependencies for $xchoice..." 7 50
 		if [ "$tag" = "A" ]; then
 			sudo -u "$name" $aurhelper -S --noconfirm "$new_pkg" >/dev/null 2>&1 || error "Failed to install $new_pkg from AUR."
