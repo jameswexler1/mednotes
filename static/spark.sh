@@ -35,7 +35,7 @@ error() {
 
 welcomemsg() {
 	whiptail --title "Welcome!" \
-		--msgbox "Welcome to Sparkk's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Spark" 10 60
+		--msgbox "Welcome to Spark's Auto-Rice Bootstrapping Script!\\n\\nThis script will automatically install a fully-featured Linux desktop, which I use as my main machine.\\n\\n-Spark" 10 60
 
 	whiptail --title "Important Note!" --yes-button "All ready!" \
 		--no-button "Return..." \
@@ -115,11 +115,15 @@ enable_gremlins() {
 		fi
 	done
 	pacman -Syy --noconfirm || error "Failed to sync repositories after enabling gremlins."
-	if pacman -Q xorg-server >/dev/null 2>&1; then
-		whiptail --infobox "Removing existing Xorg to resolve conflicts with XLibre..." 7 50
-		pacman -Rns --noconfirm xorg-server || true
-	fi
 	pacman -Syu --noconfirm || error "Failed to upgrade system after enabling gremlins."
+}
+
+disable_gremlins() {
+	whiptail --title "Disabling Testing Repos" --yesno "Disabling gremlins repositories to return to stable packages. This requires a full system downgrade/upgrade, which may resolve instabilities but could temporarily break things. Proceed?" 10 60 || error "User aborted disabling gremlins."
+	whiptail --infobox "Disabling gremlins repositories..." 7 50
+	sed -i '/^\[.*-gremlins\]/,+1d' /etc/pacman.conf
+	pacman -Syy --noconfirm || error "Failed to sync repositories after disabling gremlins."
+	pacman -Syu --noconfirm || error "Failed to upgrade/downgrade system after disabling gremlins."
 }
 
 manualinstall() {
@@ -228,6 +232,37 @@ makeuserjs(){
 	chown "$name":wheel "$arkenfox" "$userjs"
 }
 
+handle_xserver_conflicts() {
+	local conflicting_pkg new_pkg tag
+	if [ "$xchoice" = "Xlibre" ]; then
+		conflicting_pkg="xorg-server"
+		new_pkg="xlibre-xserver"
+		if [ "$(readlink -f /sbin/init)" = "/usr/lib/systemd/systemd" ]; then
+			tag="A"  # AUR on Arch
+		else
+			tag=""  # Repo on Artix
+		fi
+	else
+		conflicting_pkg="xlibre-xserver"
+		new_pkg="xorg-server"
+		tag=""  # Always main repo for Xorg
+	fi
+
+	if pacman -Qq "$conflicting_pkg" &>/dev/null; then
+		whiptail --infobox "Removing conflicting package $conflicting_pkg to allow $xchoice installation..." 7 50
+		pacman -Rddns --noconfirm "$conflicting_pkg" || error "Failed to remove $conflicting_pkg. Dependencies may be blocking; remove dependent packages manually or check for issues."
+	fi
+
+	if ! pacman -Qq "$new_pkg" &>/dev/null; then
+		whiptail --infobox "Pre-installing $new_pkg to resolve dependencies for $xchoice..." 7 50
+		if [ "$tag" = "A" ]; then
+			sudo -u "$name" $aurhelper -S --noconfirm "$new_pkg" >/dev/null 2>&1 || error "Failed to install $new_pkg from AUR."
+		else
+			pacman --noconfirm --needed -S "$new_pkg" || error "Failed to install $new_pkg from repos."
+		fi
+	fi
+}
+
 finalize() {
 	whiptail --title "All done!" \
 		--msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment (it will start automatically in tty1).\\n\\n.t Spark" 13 80
@@ -258,6 +293,9 @@ else
         progsfile="https://raw.githubusercontent.com/jameswexler1/Spark/master/static/xlibre/artixprogs.csv"
         enable_gremlins
     fi
+fi
+if [ "$xchoice" = "Xorg" ] && [ "$(readlink -f /sbin/init)" != "/usr/lib/systemd/systemd" ]; then
+    disable_gremlins
 fi
 
 # Get and verify username and password.
@@ -306,6 +344,8 @@ manualinstall $aurhelper || error "Failed to install AUR helper."
 
 # Make sure .*-git AUR packages get updated automatically.
 $aurhelper -Y --save --devel
+
+handle_xserver_conflicts
 
 # The command that does all the installing. Reads the progs.csv file and
 # installs each needed program the way required. Be sure to run this only after
