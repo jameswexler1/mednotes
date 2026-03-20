@@ -41,10 +41,10 @@ enableRobotsTXT = true
     color       = "#C4A35A"
 
   [[params.projects]]
-    title       = "Progetto 2"
-    category    = "Fisioterapia"
-    description = "Descrizione del secondo progetto. Aggiungi qui i dettagli del lavoro svolto."
-    url         = ""
+    title       = "Hotel Demo"
+    category    = "Hotel"
+    description = "Il demo per un Hotel in Lombardia"
+    url         = "https://hotel-demo-lomb.netlify.app/"
     tag         = "In arrivo"
     color       = "#4A7FA5"
 
