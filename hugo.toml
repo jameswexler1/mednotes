@@ -22,9 +22,9 @@ enableRobotsTXT = true
   aboutExtra    = "Lavoro principalmente con studi medici, professionisti e piccole imprese in Lombardia."
 
   # ── Contact ────────────────────────────────────────────────
-  email         = "tua@email.it"            # ← your email
-  phone         = "+39 000 000 0000"        # ← your phone
-  whatsapp      = "+39 000 000 0000"        # ← whatsapp number (can be same)
+  email         = "gustavomagalhaes@proton.me"            # ← your email
+  phone         = "+39 346 358 2884"        # ← your phone
+  whatsapp      = "+39 346 358 2884"        # ← whatsapp number (can be same)
 
   # ── Social / profiles (leave empty "" to hide) ─────────────
   linkedin      = ""                        # ← full URL or ""
