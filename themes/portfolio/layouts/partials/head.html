@@ -2,13 +2,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{{ .Site.Params.description }}">
 <meta name="keywords" content="{{ .Site.Params.keywords }}">
-<meta property="og:title" content="{{ .Site.Title }}">
+<meta name="author" content="{{ .Site.Params.fullName }}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ .Site.BaseURL }}">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="{{ .Site.BaseURL }}">
+<meta property="og:title"       content="{{ .Site.Title }}">
 <meta property="og:description" content="{{ .Site.Params.description }}">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0A0A0F">
-<title>{{ .Site.Title }}</title>
+<meta property="og:locale"      content="it_IT">
+{{ with .Site.Params.ogImage }}
+<meta property="og:image"       content="{{ $.Site.BaseURL }}{{ . }}">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="{{ .Site.Title }}">
+<meta name="twitter:description" content="{{ .Site.Params.description }}">
+
+<!-- Title: includes city for local SEO -->
+<title>{{ .Site.Params.fullName }} — Web Developer {{ .Site.Params.city }} | Siti Web Professionali</title>
+
+<!-- Fonts: preconnect + display=swap to avoid render blocking -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap&font-display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="{{ "css/portfolio.css" | relURL }}">
 <link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}">

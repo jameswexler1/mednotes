@@ -1,6 +1,10 @@
 baseURL         = "https://yourname.netlify.app"   # ← your portfolio URL
 languageCode    = "it-IT"
 title           = "Gustavo — Web Developer"
+
+# Disable unused Hugo auto-generated pages (keeps sitemap clean)
+disableKinds = ["taxonomy", "term"]
+
 theme           = "portfolio"
 enableRobotsTXT = true
 
@@ -73,4 +77,9 @@ enableRobotsTXT = true
 
   # ── Meta / SEO ─────────────────────────────────────────────
   description   = "Web developer freelance a Pavia. Siti web professionali per studi medici, legali e piccole imprese. Design su misura, SEO locale, prezzi trasparenti."
-  keywords      = "web developer Pavia, siti web professionali Pavia, freelance web design Lombardia"
+  ogImage       = "/images/og-cover.jpg"  # 1200x630px — add this file before go-live
+  keywords      = "web developer Pavia, realizzazione siti web Pavia, siti web professionali Pavia, web designer freelance Pavia, siti web studi medici Pavia, siti web avvocati Pavia, SEO locale Pavia, web developer Lombardia, siti web economici professionali"
+
+[sitemap]
+  changefreq = "monthly"
+  priority   = 1.0

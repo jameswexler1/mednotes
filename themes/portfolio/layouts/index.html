@@ -3,7 +3,7 @@
 {{/* ═══ HERO ═══ */}}
 <section class="hero" id="top">
   <div class="hero-grid" aria-hidden="true">
-    {{ range seq 1 120 }}<div class="hero-cell"></div>{{ end }}
+    {{- range $i := seq 1 120 }}<div class="hero-cell"></div>{{ end -}}
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">
@@ -91,7 +91,7 @@
   <div class="services-inner">
     <div class="services-header reveal">
       <div class="eyebrow">Cosa offro</div>
-      <h2 class="section-title">Servizi <em>& prezzi</em></h2>
+      <h2 class="section-title">Servizi <em>&amp; prezzi</em></h2>
       <p class="services-note">Prezzi fissi, nessuna sorpresa. Preventivo gratuito entro 24 ore.</p>
     </div>
     <div class="services-grid">
@@ -164,5 +164,27 @@
     </div>
   </div>
 </section>
+
+{{/* ═══ SEO CONTENT BLOCK — visually hidden, crawlable ═══ */}}
+<div class="seo-block" aria-hidden="true">
+  <h2>Web Developer Freelance a {{ .Site.Params.city }}</h2>
+  <p>
+    Sono {{ .Site.Params.fullName }}, web developer freelance a {{ .Site.Params.city }}, {{ .Site.Params.region }}.
+    Realizzo siti web professionali per studi medici, dentistici, legali, fisioterapisti e piccole imprese
+    in tutta la Lombardia. Siti veloci, ottimizzati per Google e pensati per convertire visitatori in clienti.
+  </p>
+  <h3>Servizi di realizzazione siti web a {{ .Site.Params.city }}</h3>
+  <ul>
+    <li>Siti web per studi dentistici e medici a {{ .Site.Params.city }}</li>
+    <li>Siti web per avvocati e commercialisti in {{ .Site.Params.region }}</li>
+    <li>Siti web per fisioterapisti e centri estetici</li>
+    <li>SEO locale — posizionamento Google per ricerche a {{ .Site.Params.city }}</li>
+    <li>Realizzazione siti web professionali con Hugo e Netlify</li>
+  </ul>
+  <p>
+    Preventivo gratuito. Consegna in due settimane.
+    Contattami a {{ .Site.Params.email }} oppure al {{ .Site.Params.phone }}.
+  </p>
+</div>
 
 {{ end }}

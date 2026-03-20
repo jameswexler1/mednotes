@@ -1,0 +1,36 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "{{ .Site.Params.fullName }} — Web Developer",
+  "description": "{{ .Site.Params.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "telephone": "{{ .Site.Params.phone }}",
+  "email": "{{ .Site.Params.email }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ .Site.Params.city }}",
+    "addressRegion": "{{ .Site.Params.region }}",
+    "addressCountry": "IT"
+  },
+  "areaServed": [
+    "{{ .Site.Params.city }}",
+    "{{ .Site.Params.region }}",
+    "Milano",
+    "Alessandria"
+  ],
+  "serviceType": [
+    "Realizzazione siti web",
+    "Web design",
+    "SEO locale",
+    "Siti web per studi medici",
+    "Siti web per professionisti"
+  ],
+  "priceRange": "€€",
+  "knowsLanguage": ["it", "en"],
+  "sameAs": [
+    {{ with .Site.Params.linkedin }}"{{ . }}"{{ end }}
+    {{ with .Site.Params.github }}, "{{ . }}"{{ end }}
+  ]
+}
+</script>
