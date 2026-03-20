@@ -32,7 +32,7 @@ enableRobotsTXT = true
     title       = "Studio Odontoiatrico Busoni"
     category    = "Studio Medico"
     description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
-    url         = "https://teoriadaconspiracao.netlify.app/"  # ← your demo URL
+    url         = "https://busoni-studio.netlify.app/"  # ← your demo URL
     tag         = "Demo"
     color       = "#C4A35A"
 
