@@ -1,0 +1,76 @@
+baseURL         = "https://yourname.netlify.app"   # ← your portfolio URL
+languageCode    = "it-IT"
+title           = "Gustavo — Web Developer"
+theme           = "portfolio"
+enableRobotsTXT = true
+
+[params]
+  # ── Identity ──────────────────────────────────────────────
+  firstName     = "Gustavo"
+  lastName      = ""                        # ← add your surname
+  fullName      = "Gustavo"                 # ← shown in nav + hero
+  role          = "Web Developer Freelance"
+  city          = "Pavia"
+  region        = "Lombardia"
+  tagline       = "Siti web che lavorano per te."
+  taglineSub    = "Design professionale per studi medici, legali e piccole imprese."
+  aboutText     = "Sono uno sviluppatore web freelance basato a Pavia. Realizzo siti web su misura, veloci, belli e facili da trovare su Google — senza costi di agenzia. Ogni progetto è costruito da zero, pensato per il tuo settore e i tuoi clienti."
+  aboutExtra    = "Lavoro principalmente con studi medici, professionisti e piccole imprese in Lombardia."
+
+  # ── Contact ────────────────────────────────────────────────
+  email         = "tua@email.it"            # ← your email
+  phone         = "+39 000 000 0000"        # ← your phone
+  whatsapp      = "+39 000 000 0000"        # ← whatsapp number (can be same)
+
+  # ── Social / profiles (leave empty "" to hide) ─────────────
+  linkedin      = ""                        # ← full URL or ""
+  github        = ""                        # ← full URL or ""
+
+  # ── Portfolio projects ─────────────────────────────────────
+  # Each project: title | category | description | live URL | tag
+  [[params.projects]]
+    title       = "Studio Odontoiatrico Busoni"
+    category    = "Studio Medico"
+    description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
+    url         = "https://teoriadaconspiracao.netlify.app/"  # ← your demo URL
+    tag         = "Demo"
+    color       = "#C4A35A"
+
+  [[params.projects]]
+    title       = "Progetto 2"
+    category    = "Fisioterapia"
+    description = "Descrizione del secondo progetto. Aggiungi qui i dettagli del lavoro svolto."
+    url         = ""
+    tag         = "In arrivo"
+    color       = "#4A7FA5"
+
+  [[params.projects]]
+    title       = "Progetto 3"
+    category    = "Studio Legale"
+    description = "Descrizione del terzo progetto. Aggiungi qui i dettagli del lavoro svolto."
+    url         = ""
+    tag         = "In arrivo"
+    color       = "#5A7A5A"
+
+  # ── Services & pricing ─────────────────────────────────────
+  [[params.services]]
+    name        = "Sito Vetrina"
+    price       = "da € 1.200"
+    desc        = "5 pagine, design su misura, mobile-friendly, form di contatto, SEO base."
+    highlight   = false
+
+  [[params.services]]
+    name        = "Sito + SEO Locale"
+    price       = "da € 1.200"
+    desc        = "Tutto del pacchetto base, più ottimizzazione Google Maps e ricerche locali."
+    highlight   = true   # ← this one gets the gold border
+
+  [[params.services]]
+    name        = "Assistenza Mensile"
+    price       = "€ 40 / mese"
+    desc        = "Aggiornamenti contenuti, backup, monitoraggio e supporto tecnico continuativo."
+    highlight   = false
+
+  # ── Meta / SEO ─────────────────────────────────────────────
+  description   = "Web developer freelance a Pavia. Siti web professionali per studi medici, legali e piccole imprese. Design su misura, SEO locale, prezzi trasparenti."
+  keywords      = "web developer Pavia, siti web professionali Pavia, freelance web design Lombardia"

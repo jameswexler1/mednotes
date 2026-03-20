@@ -1,0 +1,168 @@
+{{ define "main" }}
+
+{{/* ═══ HERO ═══ */}}
+<section class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true">
+    {{ range seq 1 120 }}<div class="hero-cell"></div>{{ end }}
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-dot"></span>
+      {{ .Site.Params.city }}, {{ .Site.Params.region }} — disponibile per nuovi progetti
+    </div>
+    <h1 class="hero-title">
+      {{ .Site.Params.tagline | replaceRE `(per te)` `<em>$1</em>` | safeHTML }}
+    </h1>
+    <p class="hero-sub">{{ .Site.Params.taglineSub }}</p>
+    <div class="hero-actions">
+      <a href="#lavori" class="btn-primary">Vedi i lavori</a>
+      <a href="#contatti" class="btn-ghost">Richiedi un preventivo →</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+{{/* ═══ ABOUT ═══ */}}
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <div class="eyebrow">Chi sono</div>
+      <h2 class="section-title">{{ .Site.Params.fullName }}<span class="gold">.</span></h2>
+      <div class="about-role">{{ .Site.Params.role }}</div>
+    </div>
+    <div class="about-right reveal" style="--d:0.12s">
+      <p class="about-text">{{ .Site.Params.aboutText }}</p>
+      <p class="about-text about-text--muted">{{ .Site.Params.aboutExtra }}</p>
+      <div class="about-stats">
+        <div class="astat">
+          <span class="astat-val">{{ len .Site.Params.projects }}</span>
+          <span class="astat-label">Progetti</span>
+        </div>
+        <div class="astat">
+          <span class="astat-val">2</span>
+          <span class="astat-label">Settimane consegna</span>
+        </div>
+        <div class="astat">
+          <span class="astat-val">∞</span>
+          <span class="astat-label">Revisioni incluse</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ═══ PROJECTS ═══ */}}
+<section class="projects" id="lavori">
+  <div class="projects-header reveal">
+    <div class="eyebrow">Portfolio</div>
+    <h2 class="section-title">I miei <em>lavori</em></h2>
+  </div>
+  <div class="projects-grid">
+    {{ range $i, $p := .Site.Params.projects }}
+    <div class="project-card reveal" style="--d:{{ mul $i 0.08 }}s; --accent:{{ $p.color }}">
+      <div class="project-card-top">
+        <span class="project-tag {{ if eq $p.tag "Demo" }}tag--live{{ else }}tag--soon{{ end }}">
+          {{ if eq $p.tag "Demo" }}<span class="tag-dot"></span>{{ end }}{{ $p.tag }}
+        </span>
+        <span class="project-cat">{{ $p.category }}</span>
+      </div>
+      <h3 class="project-title">{{ $p.title }}</h3>
+      <p class="project-desc">{{ $p.description }}</p>
+      <div class="project-card-bottom">
+        {{ if $p.url }}
+        <a href="{{ $p.url }}" target="_blank" rel="noopener" class="project-link">
+          Visita il sito <span>↗</span>
+        </a>
+        {{ else }}
+        <span class="project-link project-link--muted">In sviluppo</span>
+        {{ end }}
+        <div class="project-accent-bar"></div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ═══ SERVICES ═══ */}}
+<section class="services" id="servizi">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <div class="eyebrow">Cosa offro</div>
+      <h2 class="section-title">Servizi <em>& prezzi</em></h2>
+      <p class="services-note">Prezzi fissi, nessuna sorpresa. Preventivo gratuito entro 24 ore.</p>
+    </div>
+    <div class="services-grid">
+      {{ range .Site.Params.services }}
+      <div class="service-card reveal {{ if .highlight }}service-card--highlight{{ end }}">
+        {{ if .highlight }}<div class="service-badge">Più richiesto</div>{{ end }}
+        <div class="service-name">{{ .name }}</div>
+        <div class="service-price">{{ .price }}</div>
+        <p class="service-desc">{{ .desc }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ═══ CONTACT ═══ */}}
+<section class="contact" id="contatti">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="eyebrow">Parliamoci</div>
+      <h2 class="section-title">Iniziamo<br><em>insieme.</em></h2>
+      <div class="contact-methods">
+        <a href="mailto:{{ .Site.Params.email }}" class="contact-method">
+          <span class="contact-method-label">Email</span>
+          <span class="contact-method-value">{{ .Site.Params.email }}</span>
+        </a>
+        <a href="tel:{{ .Site.Params.phone }}" class="contact-method">
+          <span class="contact-method-label">Telefono</span>
+          <span class="contact-method-value">{{ .Site.Params.phone }}</span>
+        </a>
+        {{ with .Site.Params.whatsapp }}
+        <a href="https://wa.me/{{ . | replaceRE `[^0-9]` `` }}" target="_blank" class="contact-method">
+          <span class="contact-method-label">WhatsApp</span>
+          <span class="contact-method-value">Scrivimi ora →</span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    <div class="contact-right reveal" style="--d:0.1s">
+      <form class="contact-form" name="preventivo" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="preventivo">
+        <p style="display:none"><label>Skip: <input name="bot-field"></label></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" name="nome" required placeholder="Il tuo nome">
+          </div>
+          <div class="form-group">
+            <label>Settore</label>
+            <select name="settore">
+              <option value="">Tipo di attività...</option>
+              <option>Studio medico / dentistico</option>
+              <option>Studio legale / commerciale</option>
+              <option>Centro fisioterapia / estetica</option>
+              <option>Altro professionista</option>
+              <option>Altra attività</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email o Telefono</label>
+          <input type="text" name="contatto" required placeholder="Come ti rispondo">
+        </div>
+        <div class="form-group">
+          <label>Raccontami il progetto</label>
+          <textarea name="messaggio" rows="4" placeholder="Hai già un sito? Cosa vorresti cambiare o creare?"></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-full">Invia richiesta →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{ end }}

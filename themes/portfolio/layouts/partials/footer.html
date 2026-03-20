@@ -1,0 +1,11 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-name">{{ .Site.Params.fullName }}<span class="gold">.</span></span>
+    <span class="footer-copy">© {{ now.Format "2006" }} — {{ .Site.Params.city }}, {{ .Site.Params.region }}</span>
+    <div class="footer-links">
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
+      {{ with .Site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a>{{ end }}
+      <a href="mailto:{{ .Site.Params.email }}">Email</a>
+    </div>
+  </div>
+</footer>
