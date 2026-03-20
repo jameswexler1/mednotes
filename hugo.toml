@@ -45,7 +45,7 @@ enableRobotsTXT = true
     category    = "Hotel"
     description = "Il demo per un Hotel in Lombardia"
     url         = "https://hotel-demo-lomb.netlify.app/"
-    tag         = "In arrivo"
+    tag         = "Demo"
     color       = "#4A7FA5"
 
   [[params.projects]]
