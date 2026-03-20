@@ -712,13 +712,17 @@ em    { font-style: italic; color: var(--gold); font-family: var(--font-serif); 
   .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
 }
 
-/* SEO content block — off-screen but crawlable by Google */
+/* SEO block — hidden from visitors, readable by Google */
 .seo-block {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  left: -9999px !important;
+  top: auto !important;
 }
