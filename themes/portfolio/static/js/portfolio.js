@@ -3,8 +3,9 @@
 
   /* Nav scroll */
   const nav = document.getElementById('nav');
+  /* Nav turns solid after scrolling just past the top padding */
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+    nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
   /* Mobile menu */

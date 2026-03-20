@@ -112,19 +112,17 @@ em    { font-style: italic; color: var(--gold); font-family: var(--font-serif); 
   align-items: center;
   justify-content: space-between;
   padding: 20px 52px;
-  transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
-.nav.scrolled {
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 var(--border);
-}
+
+/* ── Over dark hero: light text ── */
 .nav-logo {
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--white);
+  transition: color 0.4s ease;
 }
 .nav-logo span { color: var(--gold); }
 
@@ -137,20 +135,26 @@ em    { font-style: italic; color: var(--gold); font-family: var(--font-serif); 
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.04em;
-  color: var(--muted);
-  transition: color 0.2s;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.4s ease;
 }
-.nav-link:hover { color: var(--ink); }
+.nav-link:hover { color: var(--white); }
+
 .nav-cta {
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--ink);
+  color: var(--white);
   padding: 9px 20px;
-  border: 1px solid var(--ink);
-  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.35);
+  transition: background 0.2s, color 0.2s, border-color 0.4s ease;
 }
-.nav-cta:hover { background: var(--ink); color: var(--white); }
+.nav-cta:hover {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--white);
+}
+
 .nav-burger {
   display: none;
   flex-direction: column;
@@ -160,9 +164,28 @@ em    { font-style: italic; color: var(--gold); font-family: var(--font-serif); 
 .nav-burger span {
   display: block;
   width: 20px; height: 1px;
-  background: var(--ink);
+  background: var(--white);
   transition: all 0.25s;
 }
+
+/* ── Scrolled: solid white bg, dark text ── */
+.nav.scrolled {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav.scrolled .nav-logo { color: var(--ink); }
+.nav.scrolled .nav-link { color: var(--muted); }
+.nav.scrolled .nav-link:hover { color: var(--ink); }
+.nav.scrolled .nav-cta {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.nav.scrolled .nav-cta:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+.nav.scrolled .nav-burger span { background: var(--ink); }
 
 /* ══════════════════════════════════════════════════════════
    HERO
