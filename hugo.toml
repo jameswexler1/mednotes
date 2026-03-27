@@ -59,19 +59,19 @@ enableRobotsTXT = true
   # ── Services & pricing ─────────────────────────────────────
   [[params.services]]
     name        = "Sito Vetrina"
-    price       = "da € 1.200"
+    price       = "da € 350"
     desc        = "5 pagine, design su misura, mobile-friendly, form di contatto, SEO base."
     highlight   = false
 
   [[params.services]]
     name        = "Sito + SEO Locale"
-    price       = "da € 1.200"
+    price       = "da € 350"
     desc        = "Tutto del pacchetto base, più ottimizzazione Google Maps e ricerche locali."
     highlight   = true   # ← this one gets the gold border
 
   [[params.services]]
     name        = "Assistenza Mensile"
-    price       = "€ 40 / mese"
+    price       = "€ 25 / mese"
     desc        = "Aggiornamenti contenuti, backup, monitoraggio e supporto tecnico continuativo."
     highlight   = false
 
