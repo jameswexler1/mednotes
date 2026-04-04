@@ -79,7 +79,7 @@ enableRobotsTXT = true
 
   [[params.services]]
     name        = "Assistenza Mensile"
-    price       = "€ 25 / mese"
+    price       = "€ 40 / mese"
     desc        = "Aggiornamenti contenuti, backup, monitoraggio e supporto tecnico continuativo."
     highlight   = false
 
