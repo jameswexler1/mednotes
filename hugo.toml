@@ -41,6 +41,15 @@ enableRobotsTXT = true
     tag         = "Demo"
     color       = "#4A6FA5"
 
+
+  [[params.projects]]
+    title       = "Ristorante Valentino"
+    category    = "Ristorante"
+    description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
+    url         = "https://valentino-restaurant.netlify.app/"  # ← your demo URL
+    tag         = "Demo"
+    color       = "Red"
+
   [[params.projects]]
     title       = "Studio Odontoiatrico Bianchi"
     category    = "Studio Dentistico"
