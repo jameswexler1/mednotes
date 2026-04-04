@@ -1,4 +1,4 @@
-baseURL         = "https://yourname.netlify.app"   # ← your portfolio URL
+baseURL         = "https://demagalhaes.com"   # ← your portfolio URL
 languageCode    = "it-IT"
 title           = "Gustavo — Web Developer"
 
@@ -11,7 +11,7 @@ enableRobotsTXT = true
 [params]
   # ── Identity ──────────────────────────────────────────────
   firstName     = "Gustavo"
-  lastName      = ""                        # ← add your surname
+  lastName      = "Magalhaes"                        # ← add your surname
   fullName      = "Gustavo"                 # ← shown in nav + hero
   role          = "Web Developer Freelance"
   city          = "Pavia"
