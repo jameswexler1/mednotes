@@ -34,7 +34,7 @@ enableRobotsTXT = true
   # Each project: title | category | description | live URL | tag
   [[params.projects]]
     title       = "Studio Odontoiatrico Bianchi"
-    category    = "Studio Medico"
+    category    = "Studio Dentistico"
     description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
     url         = "https://bianchi-odontoiatria-demo.netlify.app/"  # ← your demo URL
     tag         = "Demo"
