@@ -6,19 +6,22 @@
 
 1. `archetypes/default.md`
 2. `content/_index.md`
-3. `hugo.toml`
-4. `netlify.toml`
-5. `static/googlef351404e105fdf46.html`
-6. `static/spark.sh`
-7. `themes/portfolio/layouts/_default/baseof.html`
-8. `themes/portfolio/layouts/index.html`
-9. `themes/portfolio/layouts/partials/footer.html`
-10. `themes/portfolio/layouts/partials/head.html`
-11. `themes/portfolio/layouts/partials/nav.html`
-12. `themes/portfolio/layouts/partials/schema.html`
-13. `themes/portfolio/static/css/portfolio.css`
-14. `themes/portfolio/static/images/favicon.svg`
-15. `themes/portfolio/static/js/portfolio.js`
+3. `content/preventivo.md`
+4. `hugo.toml`
+5. `netlify.toml`
+6. `static/googlef351404e105fdf46.html`
+7. `static/spark.sh`
+8. `themes/portfolio/layouts/_default/baseof.html`
+9. `themes/portfolio/layouts/_default/preventivo.html`
+10. `themes/portfolio/layouts/index.html`
+11. `themes/portfolio/layouts/partials/footer.html`
+12. `themes/portfolio/layouts/partials/head.html`
+13. `themes/portfolio/layouts/partials/nav.html`
+14. `themes/portfolio/layouts/partials/schema.html`
+15. `themes/portfolio/static/css/portfolio.css`
+16. `themes/portfolio/static/images/favicon.svg`
+17. `themes/portfolio/static/js/calculator.js`
+18. `themes/portfolio/static/js/portfolio.js`
 
 ---
 
@@ -37,6 +40,15 @@ title = '{{ replace .File.ContentBaseName "-" " " | title }}'
 ```markdown
 ---
 title: "Home"
+---
+```
+
+## `content/preventivo.md`
+
+```markdown
+---
+title: "Preventivo"
+layout: "preventivo"
 ---
 ```
 
@@ -77,11 +89,20 @@ enableRobotsTXT = true
 
   # ── Portfolio projects ─────────────────────────────────────
   # Each project: title | category | description | live URL | tag
+
+[[params.projects]]
+    title       = "Studio Dentistico Aurora"
+    category    = "Studio Dentistico"
+    description = "Sito completo per studio odontoiatrico a Milano. Design premium, pagine dedicate per ogni servizio, sezione team, blog e form di prenotazione GDPR-compliant."
+    url         = "https://aurora-clinica-demo.netlify.app/"
+    tag         = "Demo"
+    color       = "#4A6FA5"
+
   [[params.projects]]
-    title       = "Studio Odontoiatrico Busoni"
-    category    = "Studio Medico"
+    title       = "Studio Odontoiatrico Bianchi"
+    category    = "Studio Dentistico"
     description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
-    url         = "https://busoni-studio.netlify.app/"  # ← your demo URL
+    url         = "https://bianchi-odontoiatria-demo.netlify.app/"  # ← your demo URL
     tag         = "Demo"
     color       = "#C4A35A"
 
@@ -93,13 +114,13 @@ enableRobotsTXT = true
     tag         = "Demo"
     color       = "#4A7FA5"
 
-  [[params.projects]]
-    title       = "Progetto 3"
-    category    = "Studio Legale"
-    description = "Descrizione del terzo progetto. Aggiungi qui i dettagli del lavoro svolto."
-    url         = ""
-    tag         = "In arrivo"
-    color       = "#5A7A5A"
+[[params.projects]]
+    title       = "Studio Dentistico Busoni"
+    category    = "Studio Dentistico"
+    description = "Sito completo per studio odontoiatrico a Milano."
+    url         = "https://busoni-studio.netlify.app/"
+    tag         = "Demo"
+    color       = "#C4A35A"
 
   # ── Services & pricing ─────────────────────────────────────
   [[params.services]]
@@ -116,7 +137,7 @@ enableRobotsTXT = true
 
   [[params.services]]
     name        = "Assistenza Mensile"
-    price       = "€ 25 / mese"
+    price       = "€ 40 / mese"
     desc        = "Aggiornamenti contenuti, backup, monitoraggio e supporto tecnico continuativo."
     highlight   = false
 
@@ -128,6 +149,48 @@ enableRobotsTXT = true
 [sitemap]
   changefreq = "monthly"
   priority   = 1.0
+
+# ── Calculator / Pricing ───────────────────────────────────────
+[[params.calculatorItems]]
+  id        = "base"
+  name      = "Sito Vetrina"
+  price     = 300
+  required  = true
+  desc      = "5 pagine, responsive, SEO base, form contatto, galleria fotografica"
+  category  = "base"
+
+[[params.calculatorItems]]
+  id          = "seo"
+  name        = "SEO Approfondita"
+  price       = 100
+  recommended = true
+  desc        = "Schema markup, ottimizzazione Google Maps, ranking più rapido"
+  category    = "addon"
+
+[[params.calculatorItems]]
+  id        = "language"
+  name      = "Lingua Extra"
+  price     = 70
+  perUnit   = true
+  unitLabel = "lingua"
+  desc      = "Inglese, Francese, Tedesco, Spagnolo — Italiano già incluso"
+  category  = "addon"
+
+[[params.calculatorItems]]
+  id        = "extrapage"
+  name      = "Pagina Extra"
+  price     = 40
+  perUnit   = true
+  unitLabel = "pagina"
+  desc      = "Oltre le 5 pagine incluse nel pacchetto base"
+  category  = "addon"
+
+[[params.calculatorItems]]
+  id       = "booking"
+  name     = "Sistema Prenotazioni"
+  price    = 600
+  desc     = "Calendario prenotazioni, pagamenti Stripe, email automatiche, voucher PDF"
+  category = "premium"
 ```
 
 ## `netlify.toml`
@@ -542,6 +605,66 @@ finalize
 </html>
 ```
 
+## `themes/portfolio/layouts/_default/preventivo.html`
+
+```html
+{{ define "main" }}
+<script>
+window.CALC_DATA = {{ .Site.Params.calculatorItems | jsonify | safeJS }};
+window.CALC_META = {
+  fullName: {{ .Site.Params.fullName | jsonify | safeJS }},
+  email:    {{ .Site.Params.email    | jsonify | safeJS }},
+  whatsapp: "{{ .Site.Params.whatsapp | replaceRE `[^0-9]` `` }}"
+};
+</script>
+
+{{/* ═══ HERO ═══ */}}
+<section class="calc-hero">
+  <div class="calc-hero-inner">
+    <a href="/" class="calc-back">← Torna al sito</a>
+    <div class="eyebrow">Preventivo interattivo</div>
+    <h1 class="calc-title">Calcola il tuo <em>progetto</em></h1>
+    <p class="calc-subtitle">Seleziona i servizi che ti interessano. Il totale si aggiorna in tempo reale e puoi scaricare un PDF o inviarlo via WhatsApp o email.</p>
+  </div>
+</section>
+
+{{/* ═══ BODY ═══ */}}
+<section class="calc-body">
+  <div class="calc-layout">
+
+    <div class="calc-items" id="calc-items"></div>
+
+    <aside class="calc-sidebar">
+      <div class="calc-total-box">
+        <div class="calc-total-label">Totale stimato</div>
+        <div class="calc-total-amount" id="calc-total">&euro; 300</div>
+        <div class="calc-total-note">IVA non inclusa &middot; preventivo indicativo</div>
+        <div class="calc-breakdown" id="calc-breakdown"></div>
+        <div class="calc-actions">
+          <button class="calc-btn calc-btn--primary" id="btn-pdf">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Scarica PDF
+          </button>
+          <button class="calc-btn calc-btn--whatsapp" id="btn-whatsapp">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.136.563 4.14 1.544 5.875L.057 23.5l5.782-1.516A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.386l-.361-.214-3.735.979 1.001-3.636-.235-.374A9.818 9.818 0 0112 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+            WhatsApp
+          </button>
+          <button class="calc-btn calc-btn--mail" id="btn-mail">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Invia per email
+          </button>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="{{ "js/calculator.js" | relURL }}"></script>
+{{ end }}
+```
+
 ## `themes/portfolio/layouts/index.html`
 
 ```html
@@ -592,10 +715,6 @@ finalize
           <span class="astat-val">2</span>
           <span class="astat-label">Settimane consegna</span>
         </div>
-        <div class="astat">
-          <span class="astat-val">∞</span>
-          <span class="astat-label">Revisioni incluse</span>
-        </div>
       </div>
     </div>
   </div>
@@ -633,23 +752,30 @@ finalize
   </div>
 </section>
 
-{{/* ═══ SERVICES ═══ */}}
-<section class="services" id="servizi">
-  <div class="services-inner">
-    <div class="services-header reveal">
-      <div class="eyebrow">Cosa offro</div>
-      <h2 class="section-title">Servizi <em>&amp; prezzi</em></h2>
-      <p class="services-note">Prezzi fissi, nessuna sorpresa. Preventivo gratuito entro 24 ore.</p>
+{{/* ═══ SERVICES TEASER ═══ */}}
+<section class="services-teaser" id="servizi">
+  <div class="services-teaser-inner">
+    <div class="services-teaser-header reveal">
+      <div class="eyebrow">Prezzi</div>
+      <h2 class="section-title">Trasparenti <em>&amp; flessibili</em></h2>
     </div>
-    <div class="services-grid">
-      {{ range .Site.Params.services }}
-      <div class="service-card reveal {{ if .highlight }}service-card--highlight{{ end }}">
-        {{ if .highlight }}<div class="service-badge">Più richiesto</div>{{ end }}
-        <div class="service-name">{{ .name }}</div>
-        <div class="service-price">{{ .price }}</div>
-        <p class="service-desc">{{ .desc }}</p>
+    <div class="services-teaser-stats">
+      <div class="services-teaser-stat reveal" style="--d:0.04s">
+        <div class="services-teaser-stat-val">&euro; 300</div>
+        <div class="services-teaser-stat-label">Sito vetrina completo<br>con 5 pagine incluse</div>
       </div>
-      {{ end }}
+      <div class="services-teaser-stat reveal" style="--d:0.10s">
+        <div class="services-teaser-stat-val">2 sett.</div>
+        <div class="services-teaser-stat-label">Tempo medio di consegna<br>dalla conferma</div>
+      </div>
+      <div class="services-teaser-stat reveal" style="--d:0.16s">
+        <div class="services-teaser-stat-val">3</div>
+        <div class="services-teaser-stat-label">Revisioni incluse<br>nel progetto</div>
+      </div>
+    </div>
+    <div class="services-teaser-cta reveal" style="--d:0.22s">
+      <a href="/preventivo/" class="btn-primary">Calcola il tuo preventivo &rarr;</a>
+      <span class="services-teaser-note">Configuratore interattivo &middot; PDF scaricabile</span>
     </div>
   </div>
 </section>
@@ -678,9 +804,8 @@ finalize
       </div>
     </div>
     <div class="contact-right reveal" style="--d:0.1s">
-      <form class="contact-form" name="preventivo" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="contact-form" name="preventivo" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="preventivo">
-        <p style="display:none"><label>Skip: <input name="bot-field"></label></p>
         <div class="form-row">
           <div class="form-group">
             <label>Nome</label>
@@ -799,10 +924,10 @@ finalize
 <nav class="nav" id="nav">
   <a href="/" class="nav-logo">{{ .Site.Params.fullName }}<span>.</span></a>
   <div class="nav-right">
-    <a href="#lavori" class="nav-link">Lavori</a>
-    <a href="#servizi" class="nav-link">Servizi</a>
-    <a href="#contatti" class="nav-link">Contatti</a>
-    <a href="#contatti" class="nav-cta">Parliamoci →</a>
+    <a href="{{ if .IsHome }}#lavori{{ else }}/#lavori{{ end }}" class="nav-link">Lavori</a>
+    <a href="{{ if .IsHome }}#servizi{{ else }}/#servizi{{ end }}" class="nav-link">Servizi</a>
+    <a href="{{ if .IsHome }}#contatti{{ else }}/#contatti{{ end }}" class="nav-link">Contatti</a>
+    <a href="{{ if .IsHome }}#contatti{{ else }}/#contatti{{ end }}" class="nav-cta">Parliamoci →</a>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menu">
     <span></span><span></span>
@@ -1582,6 +1707,455 @@ em    { font-style: italic; color: var(--gold); font-family: var(--font-serif); 
   left: -9999px !important;
   top: auto !important;
 }
+
+/* ============================================================
+   SERVICES TEASER  (main page replacement for services section)
+   ============================================================ */
+.services-teaser { background: var(--ink); padding: 96px 52px; }
+.services-teaser-inner { max-width: 1100px; margin: 0 auto; }
+.services-teaser .section-title { color: var(--white); }
+.services-teaser .eyebrow { color: var(--gold); }
+.services-teaser .eyebrow::before { background: var(--gold); }
+.services-teaser-header { margin-bottom: 52px; }
+
+.services-teaser-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 44px;
+}
+.services-teaser-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 32px 28px;
+  transition: background 0.2s;
+}
+.services-teaser-stat:hover { background: rgba(255,255,255,0.06); }
+.services-teaser-stat-val {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.services-teaser-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.38);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.services-teaser-cta {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.services-teaser-cta .btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+.services-teaser-cta .btn-primary:hover {
+  background: #b8952e;
+  border-color: #b8952e;
+  transform: translateY(-1px);
+}
+.services-teaser-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.22);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   CALCULATOR PAGE  (/preventivo/)
+   ============================================================ */
+
+/* Hero */
+.calc-hero { background: var(--ink); padding: 140px 52px 72px; }
+.calc-hero-inner {
+  max-width: 800px;
+  animation: fadeUp 0.8s var(--ease) both;
+}
+.calc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 32px;
+  transition: color 0.2s;
+}
+.calc-back:hover { color: var(--gold); }
+.calc-hero .eyebrow { color: var(--gold); }
+.calc-hero .eyebrow::before { background: var(--gold); }
+.calc-title {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 5.5vw, 64px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.calc-title em { color: var(--gold); }
+.calc-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.38);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 480px;
+}
+
+/* Layout */
+.calc-body {
+  background: var(--off-white);
+  padding: 64px 52px 96px;
+  min-height: 50vh;
+}
+.calc-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  gap: 52px;
+  align-items: start;
+}
+
+/* Groups */
+.calc-group { margin-bottom: 44px; }
+.calc-group-label {
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.calc-group-label::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Items */
+.calc-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 2px;
+  transition: background 0.18s, border-color 0.18s;
+  cursor: pointer;
+  user-select: none;
+}
+.calc-item[data-required] { cursor: default; }
+.calc-item:hover:not([data-required]) { background: #f0f0ee; }
+.calc-item--active {
+  border-color: rgba(201,168,76,0.35);
+  background: rgba(201,168,76,0.04);
+}
+.calc-item--active:hover:not([data-required]) { background: rgba(201,168,76,0.07); }
+.calc-item--premium {
+  background: var(--ink);
+  border-color: rgba(255,255,255,0.08);
+}
+.calc-item--premium:hover:not([data-required]) { background: #111118; }
+.calc-item--premium.calc-item--active {
+  border-color: rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.07);
+}
+.calc-item--premium.calc-item--active:hover { background: rgba(201,168,76,0.1); }
+
+.calc-item-l {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.calc-item-r {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* Custom checkbox */
+.calc-checkbox-wrap {
+  position: relative;
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.calc-checkbox-wrap input { position: absolute; opacity: 0; width: 0; height: 0; }
+.calc-checkmark {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid rgba(10,10,15,0.22);
+  background: var(--white);
+  transition: background 0.15s, border-color 0.15s;
+}
+.calc-item--premium .calc-checkmark {
+  border-color: rgba(255,255,255,0.28);
+  background: transparent;
+}
+.calc-checkbox-wrap input:checked ~ .calc-checkmark {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.calc-item--premium .calc-checkbox-wrap input:checked ~ .calc-checkmark {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.calc-checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+  left: 5px; top: 2px;
+  width: 5px; height: 9px;
+  border: solid var(--white);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+.calc-item--premium .calc-checkmark::after { border-color: var(--ink); }
+.calc-checkbox-wrap input:checked ~ .calc-checkmark::after { display: block; }
+
+/* Fixed checkmark for required items */
+.calc-check-fixed {
+  width: 18px; height: 18px;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+/* Item text */
+.calc-item-info { flex: 1; min-width: 0; }
+.calc-item-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.calc-item--premium .calc-item-name { color: var(--white); }
+.calc-item-desc {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.55;
+}
+.calc-item--premium .calc-item-desc { color: rgba(255,255,255,0.32); }
+
+/* Badges */
+.calc-badge {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.calc-badge--included    { background: rgba(10,10,15,0.06);    color: var(--muted); }
+.calc-badge--recommended { background: rgba(201,168,76,0.15);  color: var(--gold); }
+.calc-badge--premium     { background: rgba(201,168,76,0.18);  color: var(--gold); }
+
+/* Prices */
+.calc-price-val,
+.calc-unit-price {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.calc-item--premium .calc-price-val,
+.calc-item--premium .calc-unit-price { color: var(--white); }
+.calc-per-unit {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+}
+.calc-item--premium .calc-per-unit { color: rgba(255,255,255,0.35); }
+
+/* Stepper */
+.calc-stepper {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid rgba(10,10,15,0.15);
+  background: var(--white);
+  overflow: hidden;
+}
+.calc-item--premium .calc-stepper {
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+}
+.calc-stepper-btn {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+  color: var(--ink);
+  background: none; border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.calc-stepper-btn:hover { background: var(--off-white); }
+.calc-item--premium .calc-stepper-btn { color: var(--white); }
+.calc-item--premium .calc-stepper-btn:hover { background: rgba(255,255,255,0.08); }
+.calc-stepper-val {
+  min-width: 32px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  border-left: 1px solid rgba(10,10,15,0.1);
+  border-right: 1px solid rgba(10,10,15,0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.calc-item--premium .calc-stepper-val {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Sidebar */
+.calc-sidebar { position: sticky; top: 96px; }
+.calc-total-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 28px 26px;
+}
+.calc-total-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.calc-total-amount {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.calc-total-note {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 300;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.calc-breakdown {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-height: 20px;
+}
+.calc-bd-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+}
+.calc-bd-row span:last-child {
+  font-weight: 500;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+/* Action buttons */
+.calc-actions { display: flex; flex-direction: column; gap: 8px; }
+.calc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  transition: opacity 0.18s, transform 0.15s;
+  font-family: var(--font-sans);
+}
+.calc-btn:hover  { opacity: 0.88; transform: translateY(-1px); }
+.calc-btn:active { transform: translateY(0); }
+.calc-btn--primary  { background: var(--ink);  color: var(--white); }
+.calc-btn--whatsapp { background: #25D366;      color: var(--white); }
+.calc-btn--mail     { background: transparent;  color: var(--ink); border: 1px solid var(--border); }
+.calc-btn--mail:hover { border-color: var(--ink); opacity: 1; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .calc-hero   { padding: 120px 32px 56px; }
+  .calc-body   { padding: 48px 32px 72px; }
+  .calc-layout { grid-template-columns: 1fr; gap: 36px; }
+  .calc-sidebar { position: static; }
+  .services-teaser { padding: 72px 32px; }
+  .services-teaser-stats { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .calc-hero { padding: 100px 20px 48px; }
+  .calc-body { padding: 32px 20px 64px; }
+  .calc-item { padding: 16px 14px; }
+  .services-teaser { padding: 64px 20px; }
+  .services-teaser-stats { grid-template-columns: 1fr; }
+}
+
+/* Premium item: switch to dark text when selected (background goes light) */
+.calc-item--premium.calc-item--active .calc-item-name  { color: var(--ink); }
+.calc-item--premium.calc-item--active .calc-item-desc  { color: var(--muted); }
+.calc-item--premium.calc-item--active .calc-price-val,
+.calc-item--premium.calc-item--active .calc-unit-price { color: var(--ink); }
+.calc-item--premium.calc-item--active .calc-per-unit   { color: var(--muted); }
+.calc-item--premium.calc-item--active .calc-badge--premium { color: var(--gold); }
+
+.calc-item--premium.calc-item--active .calc-checkmark {
+  border-color: var(--gold);
+  background: var(--gold);
+}
+.calc-item--premium.calc-item--active .calc-checkmark::after { border-color: var(--ink); }
+
+.calc-item--premium.calc-item--active .calc-stepper {
+  border-color: rgba(10,10,15,0.2);
+  background: var(--white);
+}
+.calc-item--premium.calc-item--active .calc-stepper-btn   { color: var(--ink); }
+.calc-item--premium.calc-item--active .calc-stepper-btn:hover { background: var(--off-white); }
+.calc-item--premium.calc-item--active .calc-stepper-val {
+  color: var(--ink);
+  border-color: rgba(10,10,15,0.12);
+}
 ```
 
 ## `themes/portfolio/static/images/favicon.svg`
@@ -1592,6 +2166,347 @@ em    { font-style: italic; color: var(--gold); font-family: var(--font-serif); 
   <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle"
         font-family="Georgia,serif" font-size="16" fill="#C9A84C">G</text>
 </svg>
+```
+
+## `themes/portfolio/static/js/calculator.js`
+
+```javascript
+/* ================================================================
+   calculator.js  —  Preventivo interattivo
+   Reads window.CALC_DATA + window.CALC_META set by preventivo.html
+   ================================================================ */
+(function () {
+  'use strict';
+
+  var data = window.CALC_DATA || [];
+  var meta = window.CALC_META || {};
+
+  /* ── State ───────────────────────────────────────────────── */
+  var state = {};
+  data.forEach(function (item) {
+    state[item.id] = {
+      checked: !!(item.required || item.recommended),
+      qty: 1
+    };
+  });
+
+  /* ── Helpers ─────────────────────────────────────────────── */
+  function fmt(n) {
+    return n.toLocaleString('it-IT');
+  }
+
+  function getBreakdown() {
+    return data
+      .filter(function (item) { return state[item.id].checked; })
+      .map(function (item) {
+        var qty = item.perUnit ? state[item.id].qty : 1;
+        return {
+          name:      item.name,
+          price:     item.price * qty,
+          qty:       qty,
+          perUnit:   !!item.perUnit,
+          unitLabel: item.unitLabel || '',
+          unitPrice: item.price
+        };
+      });
+  }
+
+  function getTotal() {
+    return getBreakdown().reduce(function (acc, i) { return acc + i.price; }, 0);
+  }
+
+  function buildText() {
+    var d = new Date().toLocaleDateString('it-IT', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+    var lines = ['Preventivo \u2014 ' + (meta.fullName || ''), d, ''];
+    getBreakdown().forEach(function (item) {
+      var label = item.name;
+      if (item.perUnit && item.qty > 1) {
+        label += ' \u00d7' + item.qty + ' ' + item.unitLabel;
+      }
+      lines.push('  \u2022 ' + label + ': \u20ac' + fmt(item.price));
+    });
+    lines.push('');
+    lines.push('TOTALE: \u20ac' + fmt(getTotal()));
+    lines.push('(IVA non inclusa \u00b7 preventivo indicativo)');
+    return lines.join('\n');
+  }
+
+  /* ── Render ──────────────────────────────────────────────── */
+  function render() {
+    renderItems();
+    renderTotal();
+  }
+
+  function renderItems() {
+    var container = document.getElementById('calc-items');
+    if (!container) return;
+
+    var groups = [
+      { key: 'base',    label: 'Pacchetto Base' },
+      { key: 'addon',   label: 'Componenti Aggiuntive' },
+      { key: 'premium', label: 'Funzionalit\u00e0 Avanzate' }
+    ];
+
+    var html = '';
+
+    groups.forEach(function (g) {
+      var items = data.filter(function (item) {
+        return (item.category || 'addon') === g.key;
+      });
+      if (!items.length) return;
+
+      html += '<div class="calc-group calc-group--' + g.key + '">';
+      html += '<div class="calc-group-label">' + g.label + '</div>';
+
+      items.forEach(function (item) {
+        var s       = state[item.id];
+        var active  = s.checked ? ' calc-item--active' : '';
+        var premium = (g.key === 'premium') ? ' calc-item--premium' : '';
+        var reqAttr = item.required ? ' data-required="true"' : '';
+
+        /* badges */
+        var badges = '';
+        if (item.required)    badges += '<span class="calc-badge calc-badge--included">Incluso</span>';
+        if (item.recommended) badges += '<span class="calc-badge calc-badge--recommended">Consigliato</span>';
+        if (g.key === 'premium') badges += '<span class="calc-badge calc-badge--premium">Avanzato</span>';
+
+        /* check control */
+        var checkHtml;
+        if (item.required) {
+          checkHtml = '<div class="calc-check-fixed">'
+            + '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
+            + ' stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'
+            + '<polyline points="20 6 9 17 4 12"/></svg></div>';
+        } else {
+          checkHtml = '<label class="calc-checkbox-wrap">'
+            + '<input type="checkbox" data-id="' + item.id + '"'
+            + (s.checked ? ' checked' : '') + '>'
+            + '<span class="calc-checkmark"></span></label>';
+        }
+
+        /* price */
+        var priceHtml = item.perUnit
+          ? '<span class="calc-unit-price">\u20ac' + item.price
+            + '<span class="calc-per-unit">/' + (item.unitLabel || '') + '</span></span>'
+          : '<span class="calc-price-val">\u20ac' + item.price + '</span>';
+
+        /* stepper — only shown when the item is checked */
+        var stepperHtml = '';
+        if (item.perUnit && s.checked) {
+          stepperHtml = '<div class="calc-stepper">'
+            + '<button class="calc-stepper-btn" data-id="' + item.id
+            + '" data-action="dec" aria-label="Diminuisci">\u2212</button>'
+            + '<span class="calc-stepper-val">' + s.qty + '</span>'
+            + '<button class="calc-stepper-btn" data-id="' + item.id
+            + '" data-action="inc" aria-label="Aumenta">+</button>'
+            + '</div>';
+        }
+
+        html += '<div class="calc-item' + active + premium + '"'
+          + reqAttr + ' data-id="' + item.id + '">'
+          + '<div class="calc-item-l">'
+          + checkHtml
+          + '<div class="calc-item-info">'
+          + '<div class="calc-item-name">' + item.name + badges + '</div>'
+          + '<div class="calc-item-desc">' + item.desc + '</div>'
+          + '</div>'
+          + '</div>'
+          + '<div class="calc-item-r">'
+          + stepperHtml
+          + priceHtml
+          + '</div>'
+          + '</div>';
+      });
+
+      html += '</div>'; /* end group */
+    });
+
+    container.innerHTML = html;
+    bindEvents();
+  }
+
+  function renderTotal() {
+    var totalEl = document.getElementById('calc-total');
+    var bdEl    = document.getElementById('calc-breakdown');
+    if (totalEl) totalEl.textContent = '\u20ac ' + fmt(getTotal());
+    if (bdEl) {
+      var rows = getBreakdown().map(function (item) {
+        var label = item.name;
+        if (item.perUnit && item.qty > 1) {
+          label += ' \u00d7' + item.qty + ' ' + item.unitLabel;
+        }
+        return '<div class="calc-bd-row">'
+          + '<span>' + label + '</span>'
+          + '<span>\u20ac' + fmt(item.price) + '</span>'
+          + '</div>';
+      });
+      bdEl.innerHTML = rows.join('');
+    }
+  }
+
+  /* ── Events ──────────────────────────────────────────────── */
+  function bindEvents() {
+    /* checkboxes */
+    document.querySelectorAll('.calc-checkbox-wrap input').forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        state[this.dataset.id].checked = this.checked;
+        render();
+      });
+    });
+
+    /* steppers */
+    document.querySelectorAll('.calc-stepper-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var id  = this.dataset.id;
+        var act = this.dataset.action;
+        if (act === 'inc') state[id].qty = Math.min(10, state[id].qty + 1);
+        if (act === 'dec') state[id].qty = Math.max(1,  state[id].qty - 1);
+        render();
+      });
+    });
+
+    /* clicking anywhere on a non-required row toggles it */
+    document.querySelectorAll('.calc-item:not([data-required])').forEach(function (row) {
+      row.addEventListener('click', function (e) {
+        if (e.target.closest('.calc-stepper'))       return;
+        if (e.target.closest('.calc-checkbox-wrap')) return;
+        var cb = this.querySelector('input[type="checkbox"]');
+        if (cb) {
+          cb.checked = !cb.checked;
+          cb.dispatchEvent(new Event('change'));
+        }
+      });
+    });
+  }
+
+  /* ── PDF ─────────────────────────────────────────────────── */
+  var btnPdf  = document.getElementById('btn-pdf');
+  var btnWa   = document.getElementById('btn-whatsapp');
+  var btnMail = document.getElementById('btn-mail');
+
+  if (btnPdf) {
+    btnPdf.addEventListener('click', function () {
+      var jsPDF = window.jspdf && window.jspdf.jsPDF;
+      if (!jsPDF) { alert('Libreria PDF non disponibile.'); return; }
+
+      var doc  = new jsPDF({ unit: 'mm', format: 'a4' });
+      var W    = 210;
+      var gold = [201, 168, 76];
+      var ink  = [10,  10,  15];
+      var mute = [107, 107, 122];
+
+      /* ── dark header bar ── */
+      doc.setFillColor(ink[0], ink[1], ink[2]);
+      doc.rect(0, 0, W, 32, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(15);
+      doc.setTextColor(255, 255, 255);
+      doc.text((meta.fullName || '') + ' \u2014 Preventivo', 14, 19);
+
+      var d = new Date().toLocaleDateString('it-IT', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      });
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(gold[0], gold[1], gold[2]);
+      doc.text(d, W - 14, 19, { align: 'right' });
+
+      /* ── gold rule ── */
+      doc.setDrawColor(gold[0], gold[1], gold[2]);
+      doc.setLineWidth(0.6);
+      doc.line(14, 40, W - 14, 40);
+
+      /* ── column headers ── */
+      var y = 50;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(mute[0], mute[1], mute[2]);
+      doc.text('SERVIZIO', 14, y);
+      doc.text('IMPORTO', W - 14, y, { align: 'right' });
+      y += 8;
+
+      /* ── item rows ── */
+      getBreakdown().forEach(function (item) {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(11);
+        doc.setTextColor(ink[0], ink[1], ink[2]);
+        var label = item.name;
+        if (item.perUnit && item.qty > 1) {
+          label += '  \u00d7' + item.qty + ' ' + item.unitLabel;
+        }
+        doc.text(label, 14, y);
+        doc.setFont('helvetica', 'bold');
+        doc.text('\u20ac' + fmt(item.price), W - 14, y, { align: 'right' });
+        doc.setDrawColor(218, 218, 218);
+        doc.setLineWidth(0.2);
+        doc.line(14, y + 3.5, W - 14, y + 3.5);
+        y += 12;
+      });
+
+      /* ── total box ── */
+      y += 4;
+      doc.setFillColor(247, 247, 245);
+      doc.rect(12, y - 5, W - 24, 18, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor(ink[0], ink[1], ink[2]);
+      doc.text('TOTALE', 18, y + 5.5);
+      doc.setFontSize(14);
+      doc.setTextColor(gold[0], gold[1], gold[2]);
+      doc.text('\u20ac' + fmt(getTotal()), W - 18, y + 5.5, { align: 'right' });
+
+      /* ── note ── */
+      y += 26;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.5);
+      doc.setTextColor(mute[0], mute[1], mute[2]);
+      doc.text(
+        'IVA non inclusa \u00b7 Preventivo indicativo \u00b7 Valido 30 giorni',
+        14, y
+      );
+
+      /* ── footer bar ── */
+      doc.setFillColor(ink[0], ink[1], ink[2]);
+      doc.rect(0, 277, W, 20, 'F');
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(180, 180, 180);
+      doc.text(meta.email || '', 14, 288);
+
+      var fname = 'preventivo-'
+        + (meta.fullName || 'web').toLowerCase().replace(/\s+/g, '-')
+        + '.pdf';
+      doc.save(fname);
+    });
+  }
+
+  /* ── WhatsApp ────────────────────────────────────────────── */
+  if (btnWa) {
+    btnWa.addEventListener('click', function () {
+      var url = 'https://wa.me/' + (meta.whatsapp || '')
+        + '?text=' + encodeURIComponent(buildText());
+      window.open(url, '_blank');
+    });
+  }
+
+  /* ── Email ───────────────────────────────────────────────── */
+  if (btnMail) {
+    btnMail.addEventListener('click', function () {
+      var sub  = encodeURIComponent('Preventivo sito web');
+      var body = encodeURIComponent(buildText());
+      window.location.href =
+        'mailto:' + (meta.email || '') + '?subject=' + sub + '&body=' + body;
+    });
+  }
+
+  /* ── Init ────────────────────────────────────────────────── */
+  render();
+
+}());
 ```
 
 ## `themes/portfolio/static/js/portfolio.js`

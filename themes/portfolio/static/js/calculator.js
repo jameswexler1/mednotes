@@ -56,7 +56,6 @@
     });
     lines.push('');
     lines.push('TOTALE: \u20ac' + fmt(getTotal()));
-    lines.push('(IVA non inclusa \u00b7 preventivo indicativo)');
     return lines.join('\n');
   }
 
