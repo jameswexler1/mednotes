@@ -82,23 +82,30 @@
   </div>
 </section>
 
-{{/* ═══ SERVICES ═══ */}}
-<section class="services" id="servizi">
-  <div class="services-inner">
-    <div class="services-header reveal">
-      <div class="eyebrow">Cosa offro</div>
-      <h2 class="section-title">Servizi <em>&amp; prezzi</em></h2>
-      <p class="services-note">Prezzi fissi, nessuna sorpresa. Preventivo gratuito entro 24 ore.</p>
+{{/* ═══ SERVICES TEASER ═══ */}}
+<section class="services-teaser" id="servizi">
+  <div class="services-teaser-inner">
+    <div class="services-teaser-header reveal">
+      <div class="eyebrow">Prezzi</div>
+      <h2 class="section-title">Trasparenti <em>&amp; flessibili</em></h2>
     </div>
-    <div class="services-grid">
-      {{ range .Site.Params.services }}
-      <div class="service-card reveal {{ if .highlight }}service-card--highlight{{ end }}">
-        {{ if .highlight }}<div class="service-badge">Più richiesto</div>{{ end }}
-        <div class="service-name">{{ .name }}</div>
-        <div class="service-price">{{ .price }}</div>
-        <p class="service-desc">{{ .desc }}</p>
+    <div class="services-teaser-stats">
+      <div class="services-teaser-stat reveal" style="--d:0.04s">
+        <div class="services-teaser-stat-val">&euro; 300</div>
+        <div class="services-teaser-stat-label">Sito vetrina completo<br>con 5 pagine incluse</div>
       </div>
-      {{ end }}
+      <div class="services-teaser-stat reveal" style="--d:0.10s">
+        <div class="services-teaser-stat-val">2 sett.</div>
+        <div class="services-teaser-stat-label">Tempo medio di consegna<br>dalla conferma</div>
+      </div>
+      <div class="services-teaser-stat reveal" style="--d:0.16s">
+        <div class="services-teaser-stat-val">&infin;</div>
+        <div class="services-teaser-stat-label">Revisioni incluse<br>nel progetto</div>
+      </div>
+    </div>
+    <div class="services-teaser-cta reveal" style="--d:0.22s">
+      <a href="/preventivo/" class="btn-primary">Calcola il tuo preventivo &rarr;</a>
+      <span class="services-teaser-note">Configuratore interattivo &middot; PDF scaricabile</span>
     </div>
   </div>
 </section>

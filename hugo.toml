@@ -91,3 +91,45 @@ enableRobotsTXT = true
 [sitemap]
   changefreq = "monthly"
   priority   = 1.0
+
+# ── Calculator / Pricing ───────────────────────────────────────
+[[params.calculatorItems]]
+  id        = "base"
+  name      = "Sito Vetrina"
+  price     = 300
+  required  = true
+  desc      = "5 pagine, responsive, SEO base, form contatto, galleria fotografica"
+  category  = "base"
+
+[[params.calculatorItems]]
+  id          = "seo"
+  name        = "SEO Approfondita"
+  price       = 100
+  recommended = true
+  desc        = "Schema markup, ottimizzazione Google Maps, ranking più rapido"
+  category    = "addon"
+
+[[params.calculatorItems]]
+  id        = "language"
+  name      = "Lingua Extra"
+  price     = 70
+  perUnit   = true
+  unitLabel = "lingua"
+  desc      = "Inglese, Francese, Tedesco, Spagnolo — Italiano già incluso"
+  category  = "addon"
+
+[[params.calculatorItems]]
+  id        = "extrapage"
+  name      = "Pagina Extra"
+  price     = 40
+  perUnit   = true
+  unitLabel = "pagina"
+  desc      = "Oltre le 5 pagine incluse nel pacchetto base"
+  category  = "addon"
+
+[[params.calculatorItems]]
+  id       = "booking"
+  name     = "Sistema Prenotazioni"
+  price    = 600
+  desc     = "Calendario prenotazioni, pagamenti Stripe, email automatiche, voucher PDF"
+  category = "premium"
