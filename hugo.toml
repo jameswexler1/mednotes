@@ -33,10 +33,10 @@ enableRobotsTXT = true
   # ── Portfolio projects ─────────────────────────────────────
   # Each project: title | category | description | live URL | tag
   [[params.projects]]
-    title       = "Studio Odontoiatrico Busoni"
+    title       = "Studio Odontoiatrico Bianchi"
     category    = "Studio Medico"
     description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
-    url         = "https://busoni-studio.netlify.app/"  # ← your demo URL
+    url         = "https://bianchi-odontoiatria-demo.netlify.app/"  # ← your demo URL
     tag         = "Demo"
     color       = "#C4A35A"
 
@@ -48,13 +48,13 @@ enableRobotsTXT = true
     tag         = "Demo"
     color       = "#4A7FA5"
 
-  [[params.projects]]
-    title       = "Progetto 3"
-    category    = "Studio Legale"
-    description = "Descrizione del terzo progetto. Aggiungi qui i dettagli del lavoro svolto."
-    url         = ""
-    tag         = "In arrivo"
-    color       = "#5A7A5A"
+[[params.projects]]
+    title       = "Studio Dentistico Aurora"
+    category    = "Studio Dentistico"
+    description = "Sito completo per studio odontoiatrico a Milano. Design premium, pagine dedicate per ogni servizio, sezione team, blog e form di prenotazione GDPR-compliant."
+    url         = "https://aurora-clinica-demo.netlify.app/"
+    tag         = "Demo"
+    color       = "#4A6FA5"
 
   # ── Services & pricing ─────────────────────────────────────
   [[params.services]]
