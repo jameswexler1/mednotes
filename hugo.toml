@@ -32,6 +32,15 @@ enableRobotsTXT = true
 
   # ── Portfolio projects ─────────────────────────────────────
   # Each project: title | category | description | live URL | tag
+
+[[params.projects]]
+    title       = "Studio Dentistico Aurora"
+    category    = "Studio Dentistico"
+    description = "Sito completo per studio odontoiatrico a Milano. Design premium, pagine dedicate per ogni servizio, sezione team, blog e form di prenotazione GDPR-compliant."
+    url         = "https://aurora-clinica-demo.netlify.app/"
+    tag         = "Demo"
+    color       = "#4A6FA5"
+
   [[params.projects]]
     title       = "Studio Odontoiatrico Bianchi"
     category    = "Studio Dentistico"
@@ -47,14 +56,6 @@ enableRobotsTXT = true
     url         = "https://hotel-demo-lomb.netlify.app/"
     tag         = "Demo"
     color       = "#4A7FA5"
-
-[[params.projects]]
-    title       = "Studio Dentistico Aurora"
-    category    = "Studio Dentistico"
-    description = "Sito completo per studio odontoiatrico a Milano. Design premium, pagine dedicate per ogni servizio, sezione team, blog e form di prenotazione GDPR-compliant."
-    url         = "https://aurora-clinica-demo.netlify.app/"
-    tag         = "Demo"
-    color       = "#4A6FA5"
 
 [[params.projects]]
     title       = "Studio Dentistico Busoni"
