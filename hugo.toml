@@ -68,7 +68,7 @@ enableRobotsTXT = true
   # ── Services & pricing ─────────────────────────────────────
   [[params.services]]
     name        = "Sito Vetrina"
-    price       = "da € 350"
+    price       = "da € 300"
     desc        = "5 pagine, design su misura, mobile-friendly, form di contatto, SEO base."
     highlight   = false
 
