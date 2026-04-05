@@ -75,12 +75,12 @@ enableRobotsTXT = true
     color       = "#7D5A4F"
 
 [[params.projects]]
-    title       = "Studio Dentistico Busoni"
-    category    = "Studio Dentistico"
-    description = "Sito completo per studio odontoiatrico a Milano."
-    url         = "https://busoni-studio.netlify.app/"
+    title       = "Il Caffè di Pavia"
+    category    = "Caffetteria & Locale"
+    description = "Sito in italiano per caffetteria di specialità a Pavia. Design caldo e accogliente, menu digitale, galleria, blog e modulo di prenotazione tavoli."
+    url         = "https://ilcafedipavia.netlify.app/"
     tag         = "Demo"
-    color       = "#C4A35A"
+    color       = "#8B1A1A"
 
   # ── Services & pricing ─────────────────────────────────────
   [[params.services]]
