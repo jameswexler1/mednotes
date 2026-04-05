@@ -42,6 +42,14 @@ enableRobotsTXT = true
     color       = "#4A6FA5"
 
 
+[[params.projects]]
+    title       = "Studio Fisioterapeutico Monteverde"
+    category    = "Studio Fisioterapeutico"
+    description = "Sito istituzionale per studio di fisioterapia a Milano. Design professionale, listino prezzi trasparente, SEO locale e modulo di contatto."
+    url         = "https://monteverde-studio-fisioterapeutico.netlify.app/"
+    tag         = "Demo"
+    color       = "#4A9B8E"
+
   [[params.projects]]
     title       = "Ristorante Valentino"
     category    = "Ristorante"
