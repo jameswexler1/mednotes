@@ -66,13 +66,6 @@ enableRobotsTXT = true
     tag         = "Demo"
     color       = "#C4A35A"
 
-[[params.projects]]
-    title       = "Boutique Hotel"
-    category    = "Hotel & Ospitalità"
-    description = "Sito multilingue (IT, EN, FR, DE) per boutique hotel in Lombardia. Pagine dedicate per ogni camera, sezione esperienze, galleria e sistema di prenotazione con pagamento Stripe e voucher PDF automatico."
-    url         = "https://hotel-demo-lomb.netlify.app/en/"
-    tag         = "Demo"
-    color       = "#7D5A4F"
 
 [[params.projects]]
     title       = "Il Caffè di Pavia"
@@ -81,6 +74,15 @@ enableRobotsTXT = true
     url         = "https://ilcafedipavia.netlify.app/"
     tag         = "Demo"
     color       = "#8B1A1A"
+
+[[params.projects]]
+    title       = "Boutique Hotel"
+    category    = "Hotel & Ospitalità"
+    description = "Sito multilingue (IT, EN, FR, DE) per boutique hotel in Lombardia. Pagine dedicate per ogni camera, sezione esperienze, galleria e sistema di prenotazione con pagamento Stripe e voucher PDF automatico."
+    url         = "https://hotel-demo-lomb.netlify.app/en/"
+    tag         = "Demo"
+    color       = "#7D5A4F"
+
 
   # ── Services & pricing ─────────────────────────────────────
   [[params.services]]
