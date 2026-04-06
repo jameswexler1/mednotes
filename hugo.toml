@@ -62,7 +62,7 @@ enableRobotsTXT = true
     title       = "Studio Odontoiatrico Bianchi"
     category    = "Studio Dentistico"
     description = "Sito istituzionale per studio dentistico a Pavia. Design elegante, modulo prenotazione, SEO locale."
-    url         = "https://bianchi-odontoiatria-demo.netlify.app/"  # ← your demo URL
+    url         = "https://bianchi-odontoiatria-demo.netlify.app/"
     tag         = "Demo"
     color       = "#C4A35A"
 
