@@ -1,36 +1,58 @@
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "{{ .Site.Params.fullName }} — Web Developer",
-  "description": "{{ .Site.Params.description }}",
-  "url": "{{ .Site.BaseURL }}",
-  "telephone": "{{ .Site.Params.phone }}",
-  "email": "{{ .Site.Params.email }}",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "{{ .Site.Params.city }}",
-    "addressRegion": "{{ .Site.Params.region }}",
-    "addressCountry": "IT"
-  },
-  "areaServed": [
-    "{{ .Site.Params.city }}",
-    "{{ .Site.Params.region }}",
-    "Milano",
-    "Alessandria"
-  ],
-  "serviceType": [
-    "Realizzazione siti web",
-    "Web design",
-    "SEO locale",
-    "Siti web per studi medici",
-    "Siti web per professionisti"
-  ],
-  "priceRange": "€€",
-  "knowsLanguage": ["it", "en"],
-  "sameAs": [
-    {{ with .Site.Params.linkedin }}"{{ . }}"{{ end }}
-    {{ with .Site.Params.github }}, "{{ . }}"{{ end }}
-  ]
-}
-</script>
+{{ $description := .Params.description | default .Site.Params.description }}
+{{ $brandName := .Site.Params.fullName }}
+{{ $legalName := .Site.Params.fullName }}
+{{ with .Site.Params.lastName }}{{ $legalName = printf "%s %s" $.Site.Params.firstName . }}{{ end }}
+{{ $siteTitle := printf "%s | Web Developer Freelance a %s" $brandName .Site.Params.city }}
+{{ $pageTitle := cond .IsHome (printf "%s | Siti Web Professionali" $siteTitle) (printf "%s | %s" .Title $siteTitle) }}
+{{ with .Params.metaTitle }}{{ $pageTitle = . }}{{ end }}
+{{ $sameAs := slice }}
+{{ with .Site.Params.linkedin }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{ with .Site.Params.github }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{ $homeURL := .Site.Home.Permalink }}
+{{ $website := dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" $homeURL)
+  "url" $homeURL
+  "name" .Site.Title
+  "inLanguage" .Site.LanguageCode
+}}
+{{ $webpage := dict
+  "@type" "WebPage"
+  "@id" (printf "%s#webpage" .Permalink)
+  "url" .Permalink
+  "name" $pageTitle
+  "inLanguage" .Site.LanguageCode
+  "description" $description
+  "isPartOf" (dict "@id" (printf "%s#website" $homeURL))
+}}
+{{ $graph := slice $website $webpage }}
+{{ if .IsHome }}
+  {{ $service := dict
+    "@type" "ProfessionalService"
+    "@id" (printf "%s#business" $homeURL)
+    "name" $legalName
+    "alternateName" $brandName
+    "description" .Site.Params.description
+    "url" $homeURL
+    "telephone" .Site.Params.phone
+    "email" .Site.Params.email
+    "priceRange" "€€"
+    "knowsLanguage" (slice "it" "en")
+    "areaServed" (slice .Site.Params.city .Site.Params.region "Milano" "Alessandria")
+    "serviceType" (slice "Realizzazione siti web" "Web design" "SEO locale" "Siti web per studi medici" "Siti web per professionisti")
+    "address" (dict
+      "@type" "PostalAddress"
+      "addressLocality" .Site.Params.city
+      "addressRegion" .Site.Params.region
+      "addressCountry" "IT"
+    )
+  }}
+  {{ with (.Site.Params.ogImage | absURL) }}
+    {{ $service = merge $service (dict "image" .) }}
+  {{ end }}
+  {{ if gt (len $sameAs) 0 }}
+    {{ $service = merge $service (dict "sameAs" $sameAs) }}
+  {{ end }}
+  {{ $graph = $graph | append $service }}
+{{ end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

@@ -1,35 +1,44 @@
+{{ $description := .Params.description | default .Site.Params.description }}
+{{ $brandName := .Site.Params.fullName }}
+{{ $authorName := .Site.Params.fullName }}
+{{ with .Site.Params.lastName }}{{ $authorName = printf "%s %s" $.Site.Params.firstName . }}{{ end }}
+{{ $siteTitle := printf "%s | Web Developer Freelance a %s" $brandName .Site.Params.city }}
+{{ $pageTitle := cond .IsHome (printf "%s | Siti Web Professionali" $siteTitle) (printf "%s | %s" .Title $siteTitle) }}
+{{ with .Params.metaTitle }}{{ $pageTitle = . }}{{ end }}
+{{ $canonical := .Permalink }}
+{{ $robots := .Params.robots | default "index,follow" }}
+{{ $ogImage := .Params.ogImage | default .Site.Params.ogImage }}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="{{ .Site.Params.description }}">
-<meta name="keywords" content="{{ .Site.Params.keywords }}">
-<meta name="author" content="{{ .Site.Params.fullName }}">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="{{ .Site.BaseURL }}">
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ $authorName }}">
+<meta name="robots" content="{{ $robots }}">
+<link rel="canonical" href="{{ $canonical }}">
 
-<!-- Open Graph -->
-<meta property="og:type"        content="website">
-<meta property="og:url"         content="{{ .Site.BaseURL }}">
-<meta property="og:title"       content="{{ .Site.Title }}">
-<meta property="og:description" content="{{ .Site.Params.description }}">
-<meta property="og:locale"      content="it_IT">
-{{ with .Site.Params.ogImage }}
-<meta property="og:image"       content="{{ $.Site.BaseURL }}{{ . }}">
-<meta property="og:image:width"  content="1200">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:title" content="{{ $pageTitle }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:locale" content="it_IT">
+{{ with $ogImage }}
+<meta property="og:image" content="{{ . | absURL }}">
+<meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $pageTitle }}">
 {{ end }}
 
-<!-- Twitter Card -->
-<meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="{{ .Site.Title }}">
-<meta name="twitter:description" content="{{ .Site.Params.description }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $pageTitle }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
 
-<!-- Title: includes city for local SEO -->
-<title>{{ .Site.Params.fullName }} — Web Developer {{ .Site.Params.city }} | Siti Web Professionali</title>
+<title>{{ $pageTitle }}</title>
 
-<!-- Fonts: preconnect + display=swap to avoid render blocking -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap&font-display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ "css/portfolio.css" | relURL }}">
-<link rel="icon" type="image/svg+xml" href="{{ "images/favicon.ico" | relURL }}">
+<link rel="icon" href="{{ "images/favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="icon" href="{{ "images/favicon.ico" | relURL }}" sizes="any">

@@ -1,9 +1,9 @@
-baseURL         = "https://demagalhaes.com"   # ← your portfolio URL
+baseURL         = "https://demagalhaes.com"
 languageCode    = "it-IT"
 title           = "Gustavo — Web Developer"
 
-# Disable unused Hugo auto-generated pages (keeps sitemap clean)
-disableKinds = ["taxonomy", "term"]
+# Disable unused Hugo auto-generated pages.
+disableKinds = ["taxonomy", "term", "rss"]
 
 theme           = "portfolio"
 enableRobotsTXT = true
@@ -20,6 +20,8 @@ enableRobotsTXT = true
   taglineSub    = "Design professionale per studi medici, legali e piccole imprese."
   aboutText     = "Sono uno sviluppatore web freelance basato a Pavia. Realizzo siti web su misura, veloci, belli e facili da trovare su Google — senza costi di agenzia. Ogni progetto è costruito da zero, pensato per il tuo settore e i tuoi clienti."
   aboutExtra    = "Lavoro principalmente con studi medici, professionisti e piccole imprese in Lombardia."
+  description   = "Web developer freelance a Pavia. Realizzo siti web professionali per studi medici, legali e piccole imprese con design su misura, SEO locale e prezzi trasparenti."
+  ogImage       = "/images/og-cover.jpg"
 
   # ── Contact ────────────────────────────────────────────────
   email         = "gustavomagalhaes@proton.me"            # ← your email
@@ -102,11 +104,6 @@ enableRobotsTXT = true
     price       = "€ 40 / mese"
     desc        = "Aggiornamenti contenuti, backup, monitoraggio e supporto tecnico continuativo."
     highlight   = false
-
-  # ── Meta / SEO ─────────────────────────────────────────────
-  description   = "Web developer freelance a Pavia. Siti web professionali per studi medici, legali e piccole imprese. Design su misura, SEO locale, prezzi trasparenti."
-  ogImage       = "/images/og-cover.jpg"  # 1200x630px — add this file before go-live
-  keywords      = "web developer Pavia, realizzazione siti web Pavia, siti web professionali Pavia, web designer freelance Pavia, siti web studi medici Pavia, siti web avvocati Pavia, SEO locale Pavia, web developer Lombardia, siti web economici professionali"
 
 [sitemap]
   changefreq = "monthly"
