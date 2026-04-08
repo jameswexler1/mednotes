@@ -2,7 +2,7 @@ baseURL         = "https://demagalhaes.com"
 languageCode    = "it-IT"
 title           = "Gustavo — Web Developer"
 
-# Disable unused Hugo auto-generated pages.
+# Disable unused Hugo auto-generated pages. a
 disableKinds = ["taxonomy", "term", "rss"]
 
 theme           = "portfolio"
